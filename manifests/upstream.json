@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/vllm-project/vllm",
+  "branch": "main",
+  "sha": "31e2443c90542a33a4a4a293ea7186fba2796c67",
+  "commit_date": "2026-10-06T08:47:02Z",
+  "commit_subject": "[Model] LongCat-Flash: scale MLA norms while loading and drop the post-load sweep (#60080)",
+  "dirty_state": "clean (blob-filtered clone; working tree populated from codeload tarball of same SHA)",
+  "python_version": "3.12.3",
+  "experiment_date": "2026-10-06",
+  "notes": "Clone was made with --filter=blob:none --depth=1 (network constraints); full file tree obtained from codeload tarball at identical SHA 31e2443c90542a33a4a4a293ea7186fba2796c67. Git history beyond depth is fetched on demand for archaeology."
+}
