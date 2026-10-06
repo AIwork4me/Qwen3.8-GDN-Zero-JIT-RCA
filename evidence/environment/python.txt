@@ -1,0 +1,11 @@
+python: 3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
+torch: 2.9.1+gitff65f5b
+torch.version.hip: 7.2.53211-e1a6bc5663
+cuda_available: True
+device_count: 1
+device_name: AMD Radeon Graphics
+gcnArchName: gfx1100
+total_memory: 51522830336
+cuda version: None
+triton: 3.5.1
+vllm: 0.16.1.dev0+g89a77b108.d20260317 /opt/venv/lib/python3.12/site-packages/vllm/__init__.py

@@ -1,0 +1,28 @@
+{
+  "gpu": "AMD Radeon Pro W7900D",
+  "gfx": "gfx1100",
+  "vram_bytes": 51522830336,
+  "driver_version": "6.16.13",
+  "system_rocm_userspace": "7.2.1 (/opt/rocm, used only for hipcc/rocm-smi host tools)",
+  "pip_rocm_stack": {
+    "torch": "2.14.1+rocm7.14",
+    "torch_hip": "7.14.60850",
+    "torchvision": "0.29.1+rocm7.14",
+    "triton_rocm": "3.8.0",
+    "rocm_metapackage": "7.14.0.post1",
+    "rocm_sdk_core": "7.14.0",
+    "rocm_sdk_libraries": "7.14.0",
+    "rocm_sdk_device_gfx1100": "7.14.0"
+  },
+  "python": "3.12.3",
+  "os": "Ubuntu 24.04.4 LTS (6.8.0-79-generic)",
+  "cpu": "AMD EPYC 9334 32-Core Processor (128 threads)",
+  "notes": [
+    "Installed per mission spec from official index https://download.pytorch.org/whl/rocm7.14.",
+    "Official index resolves torch 2.14.1 (not 2.14.0); ROCm SDK resolved to 7.14.0 via explicit pin rocm-7.14.0.post1 (mission forbids 7.14.1; default unpinned resolution picks 7.14.1 -> recorded as deviation avoided by explicit pinning).",
+    "Only the gfx1100 device package was installed (single-GPU host); pip default would pull device-all (~25 targets).",
+    "GPU marketing name resolves as 'AMD Radeon Pro W7900D' (W7900 variant); gcnArchName gfx1100, 48GB -> W7900 class per mission gate.",
+    "Network proxy is slow per-connection; wheels fetched with parallel-range downloader (scripts in downloads/, method documented)."
+  ],
+  "experiment_date": "2026-10-06"
+}
