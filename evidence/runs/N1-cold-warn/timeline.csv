@@ -1,1 +1,20 @@
-timestamp,kind,detail
+timestamp,event,source_file,source_line_or_record,derivation,confidence,detail
+2026-10-07T01:58:10Z,cache_before_snapshot,evidence/runs/N1-cold-warn/cache-before.txt,header,raw,high,# cache-before 2026-10-07T01:58:10+00:00 mode=cold run=N1-cold-warn
+2026-10-07T01:58:10Z,run_env_prepared,evidence/runs/N1-cold-warn/run-env.sh,line 1,raw,high,
+2026-10-07T01:58:10Z,run_metadata_created,evidence/runs/N1-cold-warn/metadata.json,created,raw,high,
+2026-10-07T01:58:53.289572708,last_startup_artifact_vllm,evidence/runs/N1-cold-warn/cache-after.txt,max mtime <= battery_start (1 files),derived,high,
+2026-10-07T01:59:13Z,engine_init_start,evidence/runs/N1-cold-warn/server.log,server.log:27,parsed,high,(EngineCore pid=87598) INFO 10-07 01:59:13 [core.py:129] Initializing a V1 LLM engine (v0.1.dev22529+g31e2443c9.d20261007) with config: model='/workspace/models
+2026-10-07T01:59:17.913329261,last_startup_artifact_xdg,evidence/runs/N1-cold-warn/cache-after.txt,max mtime <= battery_start (21 files),derived,high,
+2026-10-07T01:59:17.944328954,last_startup_artifact_triton,evidence/runs/N1-cold-warn/cache-after.txt,max mtime <= battery_start (17 files),derived,high,
+2026-10-07T01:59:18Z,engine_init_completed,evidence/runs/N1-cold-warn/server.log,server.log:52,parsed,high,"(EngineCore pid=87598) INFO 10-07 01:59:18 [core.py:380] init engine (profile, create kv cache, warmup model) took 2.45 s"
+2026-10-07T02:00:49Z,battery_end_1,evidence/runs/N1-cold-warn/client.log,line 13,raw,high,
+2026-10-07T02:00:49Z,battery_start_1,evidence/runs/N1-cold-warn/client.log,line 1,raw,high,
+2026-10-07T02:01:01.727287227,first_runtime_artifact_triton,evidence/runs/N1-cold-warn/cache-after.txt,min mtime > battery_start (80 files),derived,high,
+2026-10-07T02:01:02.310281310,first_runtime_artifact_xdg,evidence/runs/N1-cold-warn/cache-after.txt,min mtime > battery_start (1 files),derived,high,
+2026-10-07T02:01:18Z,battery_start_2,evidence/runs/N1-cold-warn/client.log,line 14,raw,high,
+2026-10-07T02:01:19Z,battery_end_2,evidence/runs/N1-cold-warn/client.log,line 26,raw,high,
+2026-10-07T02:01:40Z,battery_start_3,evidence/runs/N1-cold-warn/client.log,line 27,raw,high,
+2026-10-07T02:01:40Z,first_recorded_request_t0,evidence/runs/N1-cold-warn/requests.jsonl,record[0].t0,parsed,high,prompt_tokens=1 batch=1
+2026-10-07T02:01:43Z,battery_end_3,evidence/runs/N1-cold-warn/client.log,line 61,raw,high,
+2026-10-07T02:01:43Z,last_recorded_request_end,evidence/runs/N1-cold-warn/requests.jsonl,record[32].t0+wall_s,parsed,high,
+2026-10-07T02:02:49Z,cache_after_snapshot,evidence/runs/N1-cold-warn/cache-after.txt,header,raw,high,

@@ -53,13 +53,14 @@ additional specializations. In normal mode the capture sizes + warmup
 produce the full needed set (6) at startup; in eager, 4 of the 6 first
 appear at runtime.
 
-### `layer_norm_fwd_kernel` — class I (already fixed at this SHA)
+### `layer_norm_fwd_kernel` — class I (gap closed at this SHA for the tested geometry)
 
-The 3 startup variants come from `warmup_layer_norm_fwd`'s
+In normal mode the 3 startup variants come from `warmup_layer_norm_fwd`'s
 M-specialization enumeration (layernorm_guard.py:270-331; PR #54251
-lineage). The runtime needed 0 more — **even in eager mode** — so the
-historical #49349 ROWS_PER_BLOCK gap is closed at this SHA for this
-geometry.
+lineage); in eager (warmup disabled) they come from the V1 profile-run
+forward (P1/G1 result.md). Either way the runtime needed 0 more — **even
+in eager mode** — so the historical #49349 ROWS_PER_BLOCK gap is closed at
+this SHA for this geometry.
 
 ## Coverage proof (normal mode) — precise claim
 
@@ -68,8 +69,8 @@ Decisive evidence for normal mode is behavioral + artifact-level:
 1. **zero runtime compiles**: P5's 428 triton entries all mtime-attributed
    BEFORE battery t0 (audit re-verified), zero jit_monitor events across
    P5/P3/P2/G2/G3, flat first-request latency (26.13 s == steady state);
-2. **deterministic**: P3 independent cold run reproduced an identical
-   kernel set (symmetric difference 0 by audit's name normalization);
+2. **reproducible**: P3 independent cold run reproduced an identical kernel
+   set (symmetric difference 0 by audit's name normalization);
 3. per-kernel variant counts: every kernel that runtime-compiled in eager
    has ≥ that count among P5's startup variants (20/20 table, docs/05 §2).
 

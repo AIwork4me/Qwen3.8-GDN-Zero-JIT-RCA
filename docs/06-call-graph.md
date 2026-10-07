@@ -42,10 +42,12 @@ Runtime evidence binding the graph:
   P1): invoked from the recurrent-attention step of `_forward_core`
   (:1453/:1480/:1538) — i.e. the peeled-decode path of mixed batches —
   NOT from `_output_projection` (which contains only RMSNormGated + out_proj).
-- `layer_norm_fwd_kernel` (3 variants) compiled only during startup: the
-  variants come from `qwen_triton_warmup`'s `warmup_layer_norm_fwd`
-  M-specialization enumeration (qwen_triton_warmup.py:148-168 →
-  layernorm_guard.py:270-331), not from a profile-run forward.
+- `layer_norm_fwd_kernel` (3 variants) compiled only during startup.
+  Attribution differs by mode: in EAGER (P1/G1) the JIT warmup registry is
+  disabled, so the startup variants come from the V1 profile-run forward
+  (P1/G1 result.md); in NORMAL mode the same 3 M-specializations are
+  produced by `qwen_triton_warmup`'s `warmup_layer_norm_fwd` enumeration
+  (qwen_triton_warmup.py:148-168 → layernorm_guard.py:270-331).
 - `_w8a8_triton_block_scaled_mm`: launched from every FP8 block linear
   (`init_fp8_linear_kernel` kernels/linear/__init__.py:701 → ROCm kernel
   list :468-471 → aiter absent → `TritonFp8BlockScaledMMKernel`

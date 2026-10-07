@@ -10,9 +10,24 @@ compilation during inference** for Qwen3.8 / Gated DeltaNet (GDN) models on:
 **This is Phase 1 (RCA) only.** No fixes are implemented here. See
 `docs/00-scope.md` for the full scope and hard phase boundary.
 
-## Verdict
+## Verdict (Phase-1 closure)
 
-See `docs/09-root-cause.md` and `STATUS.md`.
+```text
+Default graph mode: CONFIRMED — no runtime JIT was observed in the tested
+default/graph execution envelope.
+
+Enforce-eager: CONFIRMED — runtime JIT still occurs under --enforce-eager
+because graph capture and JIT warmup are intentionally disabled (and the
+JIT monitor is intentionally inactive) by current upstream design.
+
+Historical #52663: the historical ~43-minute first-inference runtime-JIT
+impact is not reproducible on the current tested stack; the eager-mode
+runtime-JIT mechanism itself remains reproducible (P1: 216 post-battery
+Triton artifacts, ~36-42 s first-request penalty).
+```
+
+See `docs/09-root-cause.md`, `STATUS.md`, and the machine-verified boundary
+report `evidence/closure/cache-boundary-verification.txt`.
 
 ## Repository layout
 

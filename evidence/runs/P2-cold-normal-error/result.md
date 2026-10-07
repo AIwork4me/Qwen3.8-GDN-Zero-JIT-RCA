@@ -15,4 +15,5 @@ first failing kernel:      NONE
 
 0 JIT events recorded (monitor armed, error mode). `--jit-monitor-mode error` — the strongest zero-runtime-JIT acceptance test
 from #49349 — **passes** for Qwen3.8-27B-FP8 on gfx1100 at pinned SHA
-31e2443 in the default graph configuration with cold caches.
+31e2443 in the default graph configuration with cold caches, for the tested
+battery (prompts ≤128 tokens, decode batches ≤4, max_tokens 16, greedy).

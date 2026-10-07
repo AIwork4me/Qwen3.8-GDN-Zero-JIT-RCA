@@ -30,6 +30,13 @@
    `fused_sigmoid_gating_delta_rule_update_kernel` (2), `batch_memcpy_kernel`,
    mamba align pre/post copy kernels, sampler kernels, full-attn
    `kernel_paged_attention_2d`.
+   Closure mtime attribution (see `cache-boundary-verification.txt`): of the
+   total inventory, only the **decode-leg set** (23 entries / 19 kernels —
+   conv1d_update ×2, packed decode ×2, apply_write ×3, sigmoid_gating +1,
+   paged_attention ×1, mamba-align/sampler infra) compiled AFTER battery
+   start; the prefill families above (FLA chunk set, conv1d_fwd,
+   fused_post_conv, layer_norm, batch_memcpy) compiled during the eager
+   startup profile run.
 
 Interpretation: in EAGER mode (no warmup, no cudagraphs) the GDN decode path
 compiles on the first real decode request. The zero-JIT acceptance question

@@ -1,1 +1,17 @@
-timestamp,kind,detail
+timestamp,event,source_file,source_line_or_record,derivation,confidence,detail
+2026-10-07T02:05:14Z,cache_before_snapshot,evidence/runs/G1-cold-warn/cache-before.txt,header,raw,high,# cache-before 2026-10-07T02:05:14+00:00 mode=cold run=G1-cold-warn
+2026-10-07T02:05:14Z,run_env_prepared,evidence/runs/G1-cold-warn/run-env.sh,line 1,raw,high,
+2026-10-07T02:05:14Z,run_metadata_created,evidence/runs/G1-cold-warn/metadata.json,created,raw,high,
+2026-10-07T02:05:58.044206093,last_startup_artifact_vllm,evidence/runs/G1-cold-warn/cache-after.txt,max mtime <= battery_start (1 files),derived,high,
+2026-10-07T02:06:25Z,engine_init_start,evidence/runs/G1-cold-warn/server.log,server.log:32,parsed,high,(EngineCore pid=89217) INFO 10-07 02:06:25 [core.py:129] Initializing a V1 LLM engine (v0.1.dev22529+g31e2443c9.d20261007) with config: model='/workspace/models
+2026-10-07T02:08:04.982851760,last_startup_artifact_xdg,evidence/runs/G1-cold-warn/cache-after.txt,max mtime <= battery_start (28 files),derived,high,
+2026-10-07T02:08:05Z,qwen_gdn_triton_warmup,evidence/runs/G1-cold-warn/server.log,server.log:84,parsed,high,(EngineCore pid=89217) INFO 10-07 02:08:05 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen3_5_text.
+2026-10-07T02:08:07.522824503,last_startup_artifact_triton,evidence/runs/G1-cold-warn/cache-after.txt,max mtime <= battery_start (935 files),derived,high,
+2026-10-07T02:08:07Z,engine_init_completed,evidence/runs/G1-cold-warn/server.log,server.log:90,parsed,high,"(EngineCore pid=89217) INFO 10-07 02:08:07 [core.py:380] init engine (profile, create kv cache, warmup model) took 98.88 s"
+2026-10-07T02:09:12.387126589,first_runtime_artifact_triton,evidence/runs/G1-cold-warn/cache-after.txt,min mtime > battery_start (184 files),derived,high,
+2026-10-07T02:09:12Z,battery_start,evidence/runs/G1-cold-warn/client.log,line 1,raw,high,
+2026-10-07T02:09:12Z,first_recorded_request_t0,evidence/runs/G1-cold-warn/requests.jsonl,record[0].t0,parsed,high,prompt_tokens=1 batch=1
+2026-10-07T02:09:13.500114584,first_runtime_artifact_xdg,evidence/runs/G1-cold-warn/cache-after.txt,min mtime > battery_start (2 files),derived,high,
+2026-10-07T02:09:34Z,battery_end,evidence/runs/G1-cold-warn/client.log,line 35,raw,high,
+2026-10-07T02:09:34Z,last_recorded_request_end,evidence/runs/G1-cold-warn/requests.jsonl,record[32].t0+wall_s,parsed,high,
+2026-10-07T02:11:28Z,cache_after_snapshot,evidence/runs/G1-cold-warn/cache-after.txt,header,raw,high,

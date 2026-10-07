@@ -22,17 +22,20 @@ triton cache: 428 entries / 67 named kernels, ALL mtime-attributed STARTUP; RUNT
 
 Every kernel family that runtime-compiled in eager P1 —
 `_causal_conv1d_update_kernel`, `fused_recurrent_gated_delta_rule_packed_decode_kernel`,
-`_w8a8_triton_block_scaled_mm` (all 6 variants), `kernel_paged_attention_2d`,
-sampler/KV infra — was fully compiled during startup in normal mode
-(cudagraph capture sizes [1..64] + 104-key JIT warmup).
+`_w8a8_triton_block_scaled_mm` (6 startup variants, ≥ eager's 6), `kernel_paged_attention_2d`,
+sampler/KV infra — was compiled during startup in normal mode with ≥ per-kernel
+variant count (cudagraph capture sizes [1..64] + 104-key JIT warmup). Coverage is
+at kernel-family/variant-count level, not entry-level identity: one eager-only
+packed_decode specialization is absent from P5 (docs/07 scope caveat).
 
 ## Reading
 
 - The historical "first inference triggers ~43 min Triton JIT" (#52663
-  comment, vllm 0.27.1+rocm723, Aug 2026) is **not reproducible** on pinned
-  current main in the default (graph) configuration: the decode-path kernels
-  compile during cudagraph capture at startup, and the 104-key warmup covers
-  the rest.
+  comment, vllm 0.27.1+rocm723, Aug 2026) was **not reproduced** on pinned
+  current main in the default (graph) configuration within the tested battery
+  envelope (prompts ≤128 tokens, decode batches ≤4, max_tokens 16) on this
+  gfx1100 host: the decode-path kernels compile during cudagraph capture at
+  startup, and the 104-key warmup covers the rest.
 - In `--enforce-eager` mode (P1) the same model DOES runtime-JIT (first two
   requests +36 s/+42 s; conv1d_update ×2, packed decode ×2, +4 w8a8, decode
   infra) because eager disables both cudagraph capture and the JIT warmup

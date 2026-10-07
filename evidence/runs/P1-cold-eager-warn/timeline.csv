@@ -1,1 +1,17 @@
-timestamp,kind,detail
+timestamp,event,source_file,source_line_or_record,derivation,confidence,detail
+2026-10-07T02:25:39Z,run_env_prepared,evidence/runs/P1-cold-eager-warn/run-env.sh,line 1,raw,high,
+2026-10-07T02:25:40Z,cache_before_snapshot,evidence/runs/P1-cold-eager-warn/cache-before.txt,header,raw,high,# cache-before 2026-10-07T02:25:40+00:00 mode=cold run=P1-cold-eager-warn
+2026-10-07T02:25:40Z,run_metadata_created,evidence/runs/P1-cold-eager-warn/metadata.json,created,raw,high,
+2026-10-07T02:26:24.094766422,last_startup_artifact_vllm,evidence/runs/P1-cold-eager-warn/cache-after.txt,max mtime <= battery_start (1 files),derived,high,
+2026-10-07T02:26:51Z,engine_init_start,evidence/runs/P1-cold-eager-warn/server.log,server.log:33,parsed,high,(EngineCore pid=92359) INFO 10-07 02:26:51 [core.py:129] Initializing a V1 LLM engine (v0.1.dev22529+g31e2443c9.d20261007) with config: model='/workspace/models
+2026-10-07T02:29:38.953596249,last_startup_artifact_xdg,evidence/runs/P1-cold-eager-warn/cache-after.txt,max mtime <= battery_start (29 files),derived,high,
+2026-10-07T02:29:40Z,qwen_gdn_triton_warmup,evidence/runs/P1-cold-eager-warn/server.log,server.log:315,parsed,high,(EngineCore pid=92359) INFO 10-07 02:29:40 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen3_5_text.
+2026-10-07T02:29:41.962562714,last_startup_artifact_triton,evidence/runs/P1-cold-eager-warn/cache-after.txt,max mtime <= battery_start (951 files),derived,high,
+2026-10-07T02:29:42Z,engine_init_completed,evidence/runs/P1-cold-eager-warn/server.log,server.log:321,parsed,high,"(EngineCore pid=92359) INFO 10-07 02:29:42 [core.py:380] init engine (profile, create kv cache, warmup model) took 158.21 s"
+2026-10-07T02:32:48.743439923,first_runtime_artifact_triton,evidence/runs/P1-cold-eager-warn/cache-after.txt,min mtime > battery_start (216 files),derived,high,
+2026-10-07T02:32:48Z,battery_start,evidence/runs/P1-cold-eager-warn/client.log,line 1,raw,high,
+2026-10-07T02:32:48Z,first_recorded_request_t0,evidence/runs/P1-cold-eager-warn/requests.jsonl,record[0].t0,parsed,high,prompt_tokens=1 batch=1
+2026-10-07T02:32:49.981424077,first_runtime_artifact_xdg,evidence/runs/P1-cold-eager-warn/cache-after.txt,min mtime > battery_start (1 files),derived,high,
+2026-10-07T02:50:03Z,battery_end,evidence/runs/P1-cold-eager-warn/client.log,line 35,raw,high,
+2026-10-07T02:50:03Z,last_recorded_request_end,evidence/runs/P1-cold-eager-warn/requests.jsonl,record[32].t0+wall_s,parsed,high,
+2026-10-07T02:51:22Z,cache_after_snapshot,evidence/runs/P1-cold-eager-warn/cache-after.txt,header,raw,high,

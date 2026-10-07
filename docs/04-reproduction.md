@@ -22,17 +22,15 @@ battery {1,4,8,15,16,17,31,32,33,64,128} × batches {1,2,4} (27B: max_tokens
 
 | run | model | config | runtime JIT |
 |---|---|---|---|
-| N1 | Qwen2.5-0.5B (dense, non-GDN) | cold eager warn | monitor OFF (eager); battery flat after harness fixes; inventory not compiled → see G/P runs for eager effect |
-| G1 | Qwen3.5-0.8B (18 GDN layers) | cold eager warn | monitor OFF; **35-kernel runtime inventory** incl. conv1d_update ×2, packed decode ×2, layer_norm ×3, FLA chunk family |
+| N1 | Qwen2.5-0.5B (dense, non-GDN) | cold eager warn | monitor OFF (eager); **80 post-battery Triton artifacts** (compile absorbed by the first, client-buggy battery's server-side execution — see N1 result.md caveat); flat latency in later batteries because kernels were already compiled |
+| G1 | Qwen3.5-0.8B (18 GDN layers) | cold eager warn | monitor OFF; **23 runtime entries / 19 kernels** (decode-leg, matches P1 classes; prefill families compiled by the eager startup profile run); total cache inventory 35 kernels |
 | G2 | Qwen3.5-0.8B | cold normal warn | **0** (warmup 88 keys + capture covered all) |
 | G3 | Qwen3.5-0.8B | warm (reuse G2 cache) normal | **0** |
 
 ## Reproducibility classification
 
-- zero-runtime-JIT in normal mode: **deterministic** (P5, P3 identical; P2
-  error-mode agrees; G2 agrees on the small model)
-- runtime-JIT set in eager mode: **deterministic** (P1 single run + G1
-  consistent kernel families; first-request latency spike reproducible)
+- zero-runtime-JIT in normal mode: **reproduced across independent runs** (P5, P3 identical cold sets; P2 error-mode agrees; G2 agrees on the small model) within the tested battery envelope
+- runtime-JIT set in eager mode: **consistent with a stable mechanism** (single P1 run; G1 shows the same kernel families at 0.8B; first-request latency spike reproduced in P1 and G1)
 - cold-startup cost: 8.5 min (normal cold) vs 3.0 min (warm) on this host —
   STARTUP JIT (timeline A), not runtime JIT
 - no 43-minute first-inference JIT observed in ANY configuration; largest
@@ -40,4 +38,5 @@ battery {1,4,8,15,16,17,31,32,33,64,128} × batches {1,2,4} (27B: max_tokens
 - no FP8 W8A8 23-minute startup autotune cliff observed in this
   configuration (startup profile run compiled 2/6 w8a8 variants eagerly;
   remaining variants compiled during capture/warmup or first requests
-  depending on mode; engine ready in ≤ 8.5 min ≪ 600 s timeout)
+  depending on mode; engine ready in ≤ 8.5 min (510 s) < 600 s default
+  timeout — below the limit, with only ~15% headroom)

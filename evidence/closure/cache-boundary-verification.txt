@@ -1,0 +1,94 @@
+# Runtime cache-boundary verification (generated — do not hand-edit)
+
+generated_by: scripts/verify_runtime_cache_boundary.py
+boundary_rule: cache mtime strictly after the battery-start second
+               (conservative: same-second fractions count as runtime)
+
+PASS G1-cold-warn (expect post-battery triton > 0 (eager runtime JIT expected))
+     battery_start=2026-10-07T02:09:12 (client.log line 1); mode=cold; graphs=eager; monitor=inactive; monitor_events=0
+     triton         total= 1119 post_battery=  184 first_post=2026-10-07T02:09:12.387126589
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=    1 post_battery=    0
+     xdg            total=   30 post_battery=    2 first_post=2026-10-07T02:09:13.500114584
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+
+PASS G2-cold-normal-warn (expect post-battery == 0 in ALL sections)
+     battery_start=2026-10-07T02:23:14 (client.log line 1); mode=cold; graphs=default/graph; monitor=armed; monitor_events=0
+     triton         total= 3279 post_battery=    0 last_startup=2026-10-07T02:16:34.429301118
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=  105 post_battery=    0 last_startup=2026-10-07T02:13:46.881141443
+     xdg            total=   36 post_battery=    0 last_startup=2026-10-07T02:16:33.439312022
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+     zero-runtime-JIT boundary: no cache mtime after 2026-10-07T02:23:14; last artifact 2026-10-07T02:16:34.429301118
+
+PASS G3-warm-reuse (expect post-battery == 0 in ALL sections)
+     battery_start=2026-10-07T04:59:05 (client.log line 1); mode=warm; graphs=default/graph; monitor=armed; monitor_events=0
+     triton         total= 3279 post_battery=    0 last_startup=2026-10-07T02:16:34.429301118
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=  105 post_battery=    0 last_startup=2026-10-07T02:13:46.881141443
+     xdg            total=   36 post_battery=    0 last_startup=2026-10-07T04:56:33.097385798
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+     zero-runtime-JIT boundary: no cache mtime after 2026-10-07T04:59:05; last artifact 2026-10-07T04:56:33.097385798
+
+PASS N1-cold-warn (expect post-battery triton > 0 (eager runtime JIT expected))
+     battery_start=2026-10-07T02:00:49 (client.log line 1); mode=cold; graphs=eager; monitor=inactive; monitor_events=0
+     triton         total=   97 post_battery=   80 first_post=2026-10-07T02:01:01.727287227
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=    1 post_battery=    0
+     xdg            total=   22 post_battery=    1 first_post=2026-10-07T02:01:02.310281310
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+
+PASS P1-cold-eager-warn (expect post-battery triton > 0 (eager runtime JIT expected))
+     battery_start=2026-10-07T02:32:48 (client.log line 1); mode=cold; graphs=eager; monitor=inactive; monitor_events=0
+     triton         total= 1167 post_battery=  216 first_post=2026-10-07T02:32:48.743439923
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=    1 post_battery=    0
+     xdg            total=   30 post_battery=    1 first_post=2026-10-07T02:32:49.981424077
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+
+PASS P2-cold-normal-error (expect post-battery == 0 in ALL sections)
+     battery_start=2026-10-07T03:48:01 (client.log line 1); mode=cold; graphs=default/graph; monitor=armed; monitor_events=0
+     triton         total= 3375 post_battery=    0 last_startup=2026-10-07T03:46:34.415077783
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=  101 post_battery=    0 last_startup=2026-10-07T03:41:15.732370812
+     xdg            total=   36 post_battery=    0 last_startup=2026-10-07T03:46:26.778158741
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+     zero-runtime-JIT boundary: no cache mtime after 2026-10-07T03:48:01; last artifact 2026-10-07T03:46:34.415077783
+
+PASS P3-cold-normal-warn (expect post-battery == 0 in ALL sections)
+     battery_start=2026-10-07T04:14:30 (client.log line 1); mode=cold; graphs=default/graph; monitor=armed; monitor_events=0
+     triton         total= 3375 post_battery=    0 last_startup=2026-10-07T04:12:53.309564246
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=  101 post_battery=    0 last_startup=2026-10-07T04:07:33.932162112
+     xdg            total=   36 post_battery=    0 last_startup=2026-10-07T04:12:45.649650631
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+     zero-runtime-JIT boundary: no cache mtime after 2026-10-07T04:14:30; last artifact 2026-10-07T04:12:53.309564246
+
+PASS P4-warm-reuse (expect post-battery == 0 in ALL sections)
+     battery_start=2026-10-07T04:38:25 (client.log line 1); mode=warm; graphs=default/graph; monitor=armed; monitor_events=0
+     triton         total= 3375 post_battery=    0 last_startup=2026-10-07T03:06:50.989485112
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=  101 post_battery=    0 last_startup=2026-10-07T03:01:32.661133869
+     xdg            total=   36 post_battery=    0 last_startup=2026-10-07T04:32:31.011269143
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+     zero-runtime-JIT boundary: no cache mtime after 2026-10-07T04:38:25; last artifact 2026-10-07T04:32:31.011269143
+
+PASS P5-cold-normal-warn (expect post-battery == 0 in ALL sections)
+     battery_start=2026-10-07T03:14:40 (client.log line 1); mode=cold; graphs=default/graph; monitor=armed; monitor_events=0
+     triton         total= 3375 post_battery=    0 last_startup=2026-10-07T03:06:50.989485112
+     torchinductor  total=    0 post_battery=    0
+     vllm           total=  101 post_battery=    0 last_startup=2026-10-07T03:01:32.661133869
+     xdg            total=   36 post_battery=    0 last_startup=2026-10-07T03:06:43.332580025
+     triton-home    total=    0 post_battery=    0
+     hf             total=    0 post_battery=    0
+     zero-runtime-JIT boundary: no cache mtime after 2026-10-07T03:14:40; last artifact 2026-10-07T03:06:50.989485112
+
+OVERALL: PASS — all run expectations satisfied (default/graph runs: zero post-battery artifacts; eager runs: runtime artifacts present)

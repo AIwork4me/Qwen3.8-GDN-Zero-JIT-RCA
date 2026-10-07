@@ -1,1 +1,20 @@
-timestamp,kind,detail
+timestamp,event,source_file,source_line_or_record,derivation,confidence,detail
+2026-10-07 04:31:37Z,run_metadata_created,evidence/runs/P4-warm-reuse/metadata.json,created,raw,high,
+2026-10-07T02:59:01Z,run_env_prepared,evidence/runs/P4-warm-reuse/run-env.sh,line 1,raw,high,
+2026-10-07T03:01:32.661133869,last_startup_artifact_vllm,evidence/runs/P4-warm-reuse/cache-after.txt,max mtime <= battery_start (101 files),derived,high,
+2026-10-07T03:06:50.989485112,last_startup_artifact_triton,evidence/runs/P4-warm-reuse/cache-after.txt,max mtime <= battery_start (3375 files),derived,high,
+2026-10-07T04:31:37Z,cache_before_snapshot,evidence/runs/P4-warm-reuse/cache-before.txt,header,raw,high,# cache-before (warm reuse of P5 cache) 2026-10-07T04:31:37+00:00
+2026-10-07T04:32:30Z,engine_init_start,evidence/runs/P4-warm-reuse/server.log,server.log:30,parsed,high,(EngineCore pid=98327) INFO 10-07 04:32:30 [core.py:129] Initializing a V1 LLM engine (v0.1.dev22529+g31e2443c9.d20261007) with config: model='/workspace/models
+2026-10-07T04:32:31.011269143,last_startup_artifact_xdg,evidence/runs/P4-warm-reuse/cache-after.txt,max mtime <= battery_start (36 files),derived,high,
+2026-10-07T04:33:19Z,profile_run_completed,evidence/runs/P4-warm-reuse/server.log,server.log:309,parsed,high,(EngineCore pid=98327) INFO 10-07 04:33:19 [monitor.py:91] [backbone] Initial profiling/warmup run took 19.57 s
+2026-10-07T04:33:46Z,jit_warmup_finished,evidence/runs/P4-warm-reuse/server.log,server.log:339,parsed,high,(EngineCore pid=98327) INFO 10-07 04:33:46 [kernel_warmup.py:185] JIT kernel warmup finished in 0.15s.
+2026-10-07T04:33:46Z,jit_warmup_starting,evidence/runs/P4-warm-reuse/server.log,server.log:334,parsed,high,(EngineCore pid=98327) INFO 10-07 04:33:46 [kernel_warmup.py:172] JIT kernel warmup starting.
+2026-10-07T04:33:46Z,qwen_gdn_triton_warmup,evidence/runs/P4-warm-reuse/server.log,server.log:340,parsed,high,(EngineCore pid=98327) INFO 10-07 04:33:46 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen3_5_text.
+2026-10-07T04:34:28Z,jit_monitor_activated,evidence/runs/P4-warm-reuse/server.log,server.log:372,parsed,high,(EngineCore pid=98327) INFO 10-07 04:34:28 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+2026-10-07T04:34:29Z,engine_init_completed,evidence/runs/P4-warm-reuse/server.log,server.log:373,parsed,high,"(EngineCore pid=98327) INFO 10-07 04:34:29 [core.py:373] init engine (profile, create kv cache, warmup model) took 110.93 s (compilation: 0.24 s)"
+2026-10-07T04:38:25Z,battery_start,evidence/runs/P4-warm-reuse/client.log,line 1,raw,high,
+2026-10-07T04:38:25Z,first_recorded_request_t0,evidence/runs/P4-warm-reuse/requests.jsonl,record[0].t0,parsed,high,prompt_tokens=1 batch=1
+2026-10-07T04:38:25Z,zero_post_battery_artifacts_all_sections,evidence/runs/P4-warm-reuse/cache-after.txt,derived: 0 files with mtime > battery_start,derived,high,
+2026-10-07T04:54:17Z,battery_end,evidence/runs/P4-warm-reuse/client.log,line 35,raw,high,
+2026-10-07T04:54:17Z,last_recorded_request_end,evidence/runs/P4-warm-reuse/requests.jsonl,record[32].t0+wall_s,parsed,high,
+2026-10-07T04:55:20Z,cache_after_snapshot,evidence/runs/P4-warm-reuse/cache-after.txt,header,raw,high,

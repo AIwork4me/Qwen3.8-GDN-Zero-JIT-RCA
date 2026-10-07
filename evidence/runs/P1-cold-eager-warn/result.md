@@ -44,9 +44,9 @@ first/second-request compile latency (timeline B), GPU idle during compile
   gpu_worker.py:1056); inventory above is from TRITON_CACHE_DIR artifacts +
   mtime attribution + latency, not from monitor warnings.
 - `layer_norm_fwd_kernel` did NOT runtime-compile: the 3 startup variants
-  (from the V1 profile-run forward) covered the battery (contrast with the historical #49349 ROWS_PER_BLOCK gap, fixed at this SHA by #54251). runtime JIT events: 0 (monitor inactive).
-- Historical
-  historical #49349 ROWS_PER_BLOCK gap, fixed at this SHA by #54251).
+  (from the V1 profile-run forward) covered the battery (contrast with the
+  historical #49349 ROWS_PER_BLOCK gap, closed at this SHA by #54251 for
+  this geometry). runtime JIT events: 0 (monitor inactive in eager).
 - The runtime w8a8 variants are Triton dynamic-arg specializations on M
   (startup compiled the M%16-divisible variant; runtime M values produced
   4 more). gfx1100 has no tuned W8A8 configs in-tree, so the default

@@ -1,1 +1,20 @@
-timestamp,kind,detail
+timestamp,event,source_file,source_line_or_record,derivation,confidence,detail
+2026-10-07T02:11:57Z,cache_before_snapshot,evidence/runs/G2-cold-normal-warn/cache-before.txt,header,raw,high,# cache-before 2026-10-07T02:11:57+00:00 mode=cold run=G2-cold-normal-warn
+2026-10-07T02:11:57Z,run_env_prepared,evidence/runs/G2-cold-normal-warn/run-env.sh,line 1,raw,high,
+2026-10-07T02:11:57Z,run_metadata_created,evidence/runs/G2-cold-normal-warn/metadata.json,created,raw,high,
+2026-10-07T02:13:07Z,engine_init_start,evidence/runs/G2-cold-normal-warn/server.log,server.log:28,parsed,high,(EngineCore pid=90759) INFO 10-07 02:13:07 [core.py:129] Initializing a V1 LLM engine (v0.1.dev22529+g31e2443c9.d20261007) with config: model='/workspace/models
+2026-10-07T02:13:46.881141443,last_startup_artifact_vllm,evidence/runs/G2-cold-normal-warn/cache-after.txt,max mtime <= battery_start (105 files),derived,high,
+2026-10-07T02:15:15Z,profile_run_completed,evidence/runs/G2-cold-normal-warn/server.log,server.log:85,parsed,high,(EngineCore pid=90759) INFO 10-07 02:15:15 [monitor.py:91] [backbone] Initial profiling/warmup run took 88.53 s
+2026-10-07T02:15:30Z,jit_warmup_starting,evidence/runs/G2-cold-normal-warn/server.log,server.log:103,parsed,high,(EngineCore pid=90759) INFO 10-07 02:15:30 [kernel_warmup.py:172] JIT kernel warmup starting.
+2026-10-07T02:16:14Z,jit_warmup_finished,evidence/runs/G2-cold-normal-warn/server.log,server.log:111,parsed,high,(EngineCore pid=90759) INFO 10-07 02:16:14 [kernel_warmup.py:185] JIT kernel warmup finished in 44.42s.
+2026-10-07T02:16:14Z,qwen_gdn_triton_warmup,evidence/runs/G2-cold-normal-warn/server.log,server.log:112,parsed,high,(EngineCore pid=90759) INFO 10-07 02:16:14 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen3_5_text.
+2026-10-07T02:16:33.439312022,last_startup_artifact_xdg,evidence/runs/G2-cold-normal-warn/cache-after.txt,max mtime <= battery_start (36 files),derived,high,
+2026-10-07T02:16:34.429301118,last_startup_artifact_triton,evidence/runs/G2-cold-normal-warn/cache-after.txt,max mtime <= battery_start (3279 files),derived,high,
+2026-10-07T02:16:35Z,engine_init_completed,evidence/runs/G2-cold-normal-warn/server.log,server.log:131,parsed,high,"(EngineCore pid=90759) INFO 10-07 02:16:35 [core.py:373] init engine (profile, create kv cache, warmup model) took 204.75 s (compilation: 26.88 s)"
+2026-10-07T02:16:35Z,jit_monitor_activated,evidence/runs/G2-cold-normal-warn/server.log,server.log:130,parsed,high,(EngineCore pid=90759) INFO 10-07 02:16:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+2026-10-07T02:23:14Z,battery_start,evidence/runs/G2-cold-normal-warn/client.log,line 1,raw,high,
+2026-10-07T02:23:14Z,first_recorded_request_t0,evidence/runs/G2-cold-normal-warn/requests.jsonl,record[0].t0,parsed,high,prompt_tokens=1 batch=1
+2026-10-07T02:23:14Z,zero_post_battery_artifacts_all_sections,evidence/runs/G2-cold-normal-warn/cache-after.txt,derived: 0 files with mtime > battery_start,derived,high,
+2026-10-07T02:23:16Z,battery_end,evidence/runs/G2-cold-normal-warn/client.log,line 35,raw,high,
+2026-10-07T02:23:16Z,last_recorded_request_end,evidence/runs/G2-cold-normal-warn/requests.jsonl,record[32].t0+wall_s,parsed,high,
+2026-10-07T02:25:02Z,cache_after_snapshot,evidence/runs/G2-cold-normal-warn/cache-after.txt,header,raw,high,

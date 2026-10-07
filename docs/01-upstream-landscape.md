@@ -125,8 +125,8 @@ Condition" indicating alignment specialization can produce unseen variants).
 | #52663 "43 min first-inference Triton JIT" (Aug 2026, v0.27.1+rocm723) | historical observation; hypothesis H8 territory — re-test on pinned SHA |
 | #49349 zero-runtime-JIT workstream | active upstream work |
 | Shared warmup infra (#47451/#49315/#50174) | current implementation (in our SHA) |
-| Qwen GDN gated-RMSNorm runtime JIT (zupengwang report, main d9dabfa) | **already fixed** at our SHA by #54251 (verify at runtime) |
-| `batch_memcpy` 17-token runtime JIT | **already fixed** at our SHA by #49903/#54797 (verify) |
+| Qwen GDN gated-RMSNorm runtime JIT (zupengwang report, main d9dabfa) | gap closed at our SHA for the tested geometry by #54251 — **verified at runtime in this RCA** (layer_norm never runtime-compiled, incl. eager) |
+| `batch_memcpy` 17-token runtime JIT | closed at our SHA by #49903/#54797 for the tested battery — **verified at runtime** (battery includes the 16/17 boundary; no runtime batch_memcpy in any run) |
 | `_causal_conv1d_fwd_kernel` runtime JIT (Kimi/DSPARK report) | warmup exists for Qwen paths at our SHA; compile-key equivalence unverified |
 | `_causal_conv1d_update_kernel` + `fused_recurrent_gated_delta_rule_packed_decode_kernel` decode runtime JIT | **no warmup found at our SHA — candidate gap** |
 | PR #49930 fp8 einsum warmup | open (not in SHA) |

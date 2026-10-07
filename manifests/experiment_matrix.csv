@@ -1,10 +1,10 @@
 run_id,label,model,mode,monitor,graphs,extra_args,purpose
-P1,Qwen3.8-27B-FP8 primary cold warn eager,Qwen3.8-27B-FP8,cold,warn,eager,"--enforce-eager",Untouched-main cold reproduction with JIT monitor warn+verbose
-P2,Qwen3.8-27B-FP8 primary cold error eager,Qwen3.8-27B-FP8,cold,error,eager,"--enforce-eager",Monitor error mode acceptance test (#49349 gate)
-P3,Qwen3.8-27B-FP8 independent cold repeat,Qwen3.8-27B-FP8,cold,warn,eager,"--enforce-eager",Cold-repeat determinism (>=2 independent cold runs)
-P4,Qwen3.8-27B-FP8 warm reuse,Qwen3.8-27B-FP8,warm,warn,eager,"--enforce-eager",Warm-cache control reusing P1 artifacts (same RUN_ID cache)
-P5,Qwen3.8-27B-FP8 cold normal graphs,Qwen3.8-27B-FP8,cold,warn,cuda-graph,"",Natural graph behavior vs eager visibility
-G1,small Qwen GDN cold warn,Qwen3.5-0.8B,cold,warn,eager,"--enforce-eager",Generic-GDN control (if GDN class exercised)
-G2,small Qwen GDN cold error,Qwen3.5-0.8B,cold,error,eager,"--enforce-eager",Error-mode on small GDN
-G3,small Qwen GDN warm,Qwen3.5-0.8B,warm,warn,eager,"--enforce-eager",Warm reuse after G1
-N1,small non-GDN cold warn,Qwen2.5-0.5B,cold,warn,eager,"--enforce-eager",Non-GDN JIT baseline control
+G1,Qwen3.5-0.8B small-GDN cold warn eager,Qwen3.5-0.8B,cold,warn,eager,--max-model-len 2048 --max-num-seqs 16,Small GDN eager runtime-JIT inventory control
+G2,Qwen3.5-0.8B small-GDN cold warn cuda-graph,Qwen3.5-0.8B,cold,warn,cuda-graph,--max-model-len 2048 --max-num-seqs 16,Small GDN cold default/graph zero-runtime-JIT control
+G3,Qwen3.5-0.8B small-GDN warm warn cuda-graph,Qwen3.5-0.8B,warm,warn,cuda-graph,--max-model-len 2048 --max-num-seqs 16,Small GDN warm reuse after G2 (same cache root)
+N1,Qwen2.5-0.5B non-GDN cold warn eager,Qwen2.5-0.5B,cold,warn,eager,--max-model-len 2048 --max-num-seqs 16,Dense non-GDN model control (harness validation + eager generic-kernel baseline)
+P1,Qwen3.8-27B-FP8 primary cold warn eager,Qwen3.8-27B-FP8,cold,warn,eager,--max-model-len 4096 --max-num-seqs 32 --gpu-memory-utilization 0.90,Untouched-main cold eager reproduction with JIT monitor warn+verbose (runtime-JIT inventory)
+P2,Qwen3.8-27B-FP8 primary cold error cuda-graph,Qwen3.8-27B-FP8,cold,error,cuda-graph,--max-model-len 4096 --max-num-seqs 32 --gpu-memory-utilization 0.90,Monitor error-mode acceptance test (#49349 gate): cold default/graph config
+P3,Qwen3.8-27B-FP8 primary cold warn cuda-graph,Qwen3.8-27B-FP8,cold,warn,cuda-graph,--max-model-len 4096 --max-num-seqs 32 --gpu-memory-utilization 0.90,Cold-repeat determinism (>=2 independent cold default-mode runs)
+P4,Qwen3.8-27B-FP8 primary warm warn cuda-graph,Qwen3.8-27B-FP8,warm,warn,cuda-graph,--max-model-len 4096 --max-num-seqs 32 --gpu-memory-utilization 0.90,Warm-cache control reusing P5 cache root (same RUN_ID cache)
+P5,Qwen3.8-27B-FP8 primary cold warn cuda-graph,Qwen3.8-27B-FP8,cold,warn,cuda-graph,--max-model-len 4096 --max-num-seqs 32 --gpu-memory-utilization 0.90,Primary zero-runtime-JIT test: cold default/graph configuration

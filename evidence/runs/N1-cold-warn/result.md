@@ -6,12 +6,15 @@
   --jit-monitor-mode warn --jit-monitor-verbose
 - cold caches proven (cache-before.txt: all empty; PREFLIGHT PASS in env.txt)
 - battery: prompt tokens {1,4,8,15,16,17,31,32,33,64,128} × batches {1,2,4};
-  all requests OK; max_tokens=8, greedy
+  final (fixed-harness) battery all 77/77 requests OK; the two earlier
+  harness-bug batteries are documented below; max_tokens=8, greedy
 
 ## Result
 
 ```text
-runtime JIT events: 0 (as measured — see caveat)
+runtime JIT events: 0 monitor events (monitor inactive by design in eager)
+disk-level: 80 post-battery Triton artifacts (02:01:01–02:01:05, first
+battery's server-side execution) — eager runtime JIT DOES occur
 ```
 
 **Caveat (corrected after independent audit):** in eager mode the JIT
@@ -23,13 +26,22 @@ monitor/warmup activation — that text came from the FIRST (aborted,
 non-eager) launch attempt of this run, which was discarded and relaunched
 cold after the launcher arg bug fix; see harness notes below.
 
-What the evidence does show: request latencies are flat from the first
-battery request (0.094 s first vs 0.08 s median) — no first-request compile
-spike (contrast G1: 4.78 s, P1: 62.7 s), consistent with the dense model
-having no uncompiled kernels on its request path in this configuration.
-Triton cache inventory for this run was not retained in the committed
-evidence (subsumed by the G/P series which inventory the same generic
-infra kernels).
+What the evidence shows (closure re-derivation from the committed cache
+manifest): 80 Triton artifacts (+1 xdg) have mtimes after the first
+battery-start marker — all created 02:01:01–02:01:05, i.e. DURING the
+first (client-buggy) battery's server-side execution. Although that
+battery's requests failed client-side (`prompt_token_ids` API errors,
+ok=0/1), the server did execute inference for them (server.log 02:01:01
+"Watermarking is enabled for this request"; 02:01:04 ROCm paged-attention
+Triton fallback), which compiled the dense model's decode/sampler/paged-
+attention kernels. By the visibly-successful batteries (2 and 3) latency
+was flat (0.094 s first vs 0.08 s median) because compilation had already
+happened. Corrected conclusion: the dense non-GDN model DOES runtime-JIT
+in eager mode (generic infra kernels), consistent with the eager mechanism
+being configuration-generic rather than GDN-specific (see docs/09
+"Generic-GDN and FP8 attribution"); its per-kernel aggregated table
+(`triton-kernels.txt`) was not generated for this run, but the raw
+`cache-after.txt` manifest fully retains the inventory.
 
 ## Harness fixes discovered during this smoke run (recorded)
 
