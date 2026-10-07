@@ -1,6 +1,6 @@
-W1007 01:44:45.389000 83459 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
-W1007 01:44:45.390000 83459 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
-W1007 01:44:45.390000 83459 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1007 01:50:34.655000 84161 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1007 01:50:34.655000 84161 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1007 01:50:34.655000 84161 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
 PASS python inside RCA venv (got /workspace/venv-qwen-gdn-rca/bin/python)
 PASS torch version (got 2.14.1+rocm7.14)
 PASS torch HIP 7.14.x (got 7.14.60850)
@@ -13,14 +13,14 @@ PASS triton-rocm 3.8.0 (got 3.8.0)
 PASS no nvidia-* contamination (found [])
 PASS venv devel hipcc present (rocm-sdk-devel 7.14.0)
 PASS cpp_extension ROCM_HOME is devel tree (got /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel)
-FAIL PATH free of /opt/rocm (got /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel/bin:/workspace/venv-qwen-gdn-rca/bin:/root/.op)
-FAIL PATH free of /opt/venv
+PASS PATH free of /opt/rocm (got /workspace/venv-qwen-gdn-rca/bin:/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel/bin:/workspac)
+PASS PATH free of /opt/venv
 PASS LD_LIBRARY_PATH free of /opt/rocm (got /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel/lib)
 PASS LD_LIBRARY_PATH free of /opt/venv
-PASS CMAKE_PREFIX_PATH free of /opt/rocm (got )
+PASS CMAKE_PREFIX_PATH free of /opt/rocm (got /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel)
 PASS CMAKE_PREFIX_PATH free of /opt/venv
 PASS PYTHONPATH free of old stacks (got )
 PASS vllm imports from pinned source (got /workspace/vllm-zero-jit-rca/vllm)
 PASS vllm NOT from old /opt/venv
 
-ENVIRONMENT GATE: FAIL
+ENVIRONMENT GATE: PASS
