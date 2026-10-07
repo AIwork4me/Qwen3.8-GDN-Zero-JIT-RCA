@@ -1,10 +1,11 @@
-# collected 2026-10-07T01:20:13+00:00
+# collected 2026-10-07T01:44:50+00:00
 accelerate==1.15.0
 agent-detector==2.0.0
 aiohappyeyeballs==2.7.1
 aiohttp==3.14.4
 aiosignal==1.4.0
 amd-quark==0.12.post1
+amdsmi @ file:///tmp/opencode/amdsmi-test/amdsmi-7.0.2-py3-none-any.whl#sha256=db5aa757f8ed82dfd799c4d39e2828542678dc4e485b0ab7fabe5f398fec5652
 annotated-doc==0.0.5
 annotated-types==0.8.0
 anthropic==1.11.0
@@ -150,6 +151,7 @@ pydantic==2.13.5
 pydantic-extra-types==2.11.1
 pydantic-settings==2.15.0
 pydantic_core==2.46.5
+pyelftools==0.33
 Pygments==2.21.0
 PyJWT==2.15.1
 pytest==9.1.1
@@ -213,6 +215,7 @@ urllib3==2.8.0
 uvicorn==0.54.0
 uvloop==0.23.0
 vcs-versioning==2.5.0
+-e git+https://github.com/vllm-project/vllm.git@31e2443c90542a33a4a4a293ea7186fba2796c67#egg=vllm
 watchfiles==1.3.0
 websockets==17.2
 wheel==0.48.0

@@ -1,4 +1,4 @@
-# collected 2026-10-07T01:20:11+00:00 by collect_env_rocm714.sh
+# collected 2026-10-07T01:44:48+00:00 by collect_env_rocm714.sh
 == interpreter identity (inside build/run env) ==
 /workspace/venv-qwen-gdn-rca/bin/python
 /workspace/venv-qwen-gdn-rca/bin/python3
@@ -29,6 +29,6 @@ rocm-sdk-core 7.14.0 /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages
 rocm-sdk-libraries 7.14.0 /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages
 rocm-sdk-device-gfx1100 7.14.0 /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages
 rocm-sdk-devel 7.14.0 /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages
-vllm NOT-INSTALLED
+vllm 0.1.dev22529+g31e2443c9.d20261007.rocm714 /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages
 xgrammar 0.2.8 /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages
 conch-triton-kernels 1.2.1 /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages

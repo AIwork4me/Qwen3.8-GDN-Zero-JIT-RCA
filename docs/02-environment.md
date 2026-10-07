@@ -137,6 +137,64 @@ reached) → the prebuilt-wheel path is not usable here; recorded as a deviation
 Consequence: vLLM must be built from source with the coherent devel toolchain
 above (which also removes any Blocker-B ambiguity from the build).
 
+## vLLM build (pinned SHA 31e2443c90542a33a4a4a293ea7186fba2796c67)
+
+Built 2026-10-07 from `/workspace/vllm-zero-jit-rca` (worktree = tarball
+extraction of upstream main at the SHA, sha256 in
+`evidence/upstream/vllm-main-31e2443-tarball.sha256`; only `.claude/skills/*`
+gitlink entries and the `RCA_UPSTREAM_SHA` marker differ from a pristine
+checkout — no source file modified).
+
+```text
+install : pip install -e . --no-deps --no-build-isolation
+version : 0.1.dev22529+g31e2443c9.d20261007.rocm714 (editable)
+import  : /workspace/vllm-zero-jit-rca/vllm/__init__.py
+compiler: devel-tree hipcc (HIP 7.14.60850 / clang 23), ROCM_PATH=$DEV
+full log: evidence/environment/vllm-build-rocm714.txt
+```
+
+## Runtime launch contract (gfx1100) — additional findings
+
+### Finding 1 — `import vllm` segfault without triton preloaded (RCA'd)
+
+`vllm/env_override.py:97 _maybe_promote_torch_symbols_for_rocm()` dlopens
+`libtorch_cpu.so` **RTLD_GLOBAL** before `import torch` (upstream rocprofiler
+symbol-promotion workaround). On this stack (official torch 2.14.1+rocm7.14
++ triton-rocm 3.8.0) any **subsequent** `import triton` segfaults inside
+`libtriton.so` static init (symbol interposition). Isolation proof:
+
+```text
+python -c "import torch, triton"                          -> OK
+python -c "import ctypes...;CDLL(libtorch_cpu, RTLD_GLOBAL); import torch; import triton"
+                                                          -> SEGFAULT at import triton
+python -c "import triton; import vllm"                    -> OK (later imports cached)
+triton kernel compile AFTER vllm import (triton first)    -> OK (gfx1100 kernel ran)
+```
+
+Fix (environment-level, no vLLM source change):
+`zz_rca_triton_first.pth` in the venv site-packages preloads triton during
+site initialization for EVERY interpreter of this venv (incl. spawned
+workers).
+
+### Finding 2 — ROCm platform detection needs the `amdsmi` python package
+
+`vllm/platforms/__init__.py:108 rocm_platform_plugin()` requires
+`import amdsmi; amdsmi.amdsmi_init(); amdsmi_get_processor_handles() > 0`.
+`amdsmi` is not in requirements/rocm.txt; without it vLLM silently falls to
+a non-ROCm platform (is_rocm() False → wrong backends everywhere). Installed
+`amdsmi 7.0.2` (PyPI pure-python wrapper; the native lib comes from the ROCm
+SDK stack); verified: `amdsmi_init()` OK, 1 processor handle, and
+`current_platform` = `RocmPlatform`, device `AMD Radeon Pro W7900D`,
+capability (11,0). This mirrors what upstream's ROCm images provide.
+
+### Verified launch env (used by all runs)
+
+```bash
+source /workspace/venv-qwen-gdn-rca/bin/activate   # .pth preloads triton
+export ROCM_PATH=.../_rocm_sdk_devel  HIP_PATH=...  (from run-env.sh)
+# gate check: python scripts/verify_environment_gate.py --build-env
+```
+
 ## Gate check
 
 `scripts/verify_environment_gate.py` asserts the whole contract

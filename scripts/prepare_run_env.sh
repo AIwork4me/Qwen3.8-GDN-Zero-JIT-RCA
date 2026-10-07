@@ -42,6 +42,8 @@ export HIP_PATH='${DEV}'
 export CMAKE_PREFIX_PATH='${DEV}'
 export LD_LIBRARY_PATH='${DEV}/lib'
 export PATH='${DEV}/bin:${VENV}/bin:/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+unset PYTHONPATH
+export PYTHONNOUSERSITE=1
 EOF
 }
 
