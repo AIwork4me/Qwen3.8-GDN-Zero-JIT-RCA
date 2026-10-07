@@ -1,4 +1,4 @@
-# cache-before 2026-10-07T04:31:28+00:00 mode=warm run=P5-cold-normal-warn
+# cache-before (warm reuse of P5 cache) 2026-10-07T04:31:37+00:00
 triton 3375 files 210543061 bytes
 torchinductor 0 files 0 bytes
 vllm 101 files 46196038 bytes

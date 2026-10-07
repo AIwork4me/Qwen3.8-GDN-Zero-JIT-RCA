@@ -19,7 +19,7 @@
    first battery request (prompt=1, batch=1) wall = **4.782 s** vs ~0.18-0.2 s
    for every later request — the first real decode compiled kernels.
 
-3. **Triton cache inventory** (`triton-kernels.txt`, 35 distinct kernels)
+3. Triton cache inventory — JIT monitor was NOT active during inference (eager); inventory built from cache artifacts. **Triton cache inventory** (`triton-kernels.txt`, 35 distinct kernels)
    includes exactly the historical GDN families:
    `_causal_conv1d_update_kernel` (2 variants),
    `fused_recurrent_gated_delta_rule_packed_decode_kernel` (2 variants),

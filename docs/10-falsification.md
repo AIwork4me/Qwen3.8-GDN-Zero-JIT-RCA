@@ -1,0 +1,14 @@
+# 10 — Falsification Matrix
+
+| # | Hypothesis | Evidence for | Evidence against | Experiment | Verdict |
+|---|---|---|---|---|---|
+| H1 | Kernel never participates in startup warmup | true for decode-leg kernels in EAGER (no capture, no warmup) | in NORMAL mode capture+warmup compile all decode keys at startup (P5 428 entries ⊇ runtime needs) | P1 vs P5 mtime attribution + variant counts | **CONFIRMED (eager only)** |
+| H2 | Warmup exists but compile key differs | ROWS_PER_BLOCK history (#49349) | P5: 0 runtime events; layer_norm 3 startup variants ≥ runtime 0-extra; P3 identical set | P1-runtime ⊆ P5-startup superset proof | **DISPROVED (at this SHA, this battery)** |
+| H3 | gfx1100 uses AITER, invalidating generic-FLA hypothesis | — | live `GDN_AITER_TRITON_AVAILABLE=False` (aiter not installed, not in rocm requirements); generic FLA path proven by compiled kernel set | platform probe + P1/G1 cache inventory | **DISPROVED (AITER not in natural path)** |
+| H4 | Observed latency is FP8 startup JIT | startup 8.5 min cold vs 3.0 warm (compile cost real) | runtime timeline has NO FP8 compile in normal mode; eager first-request spikes are decode kernels + w8a8, not "43 min" | timeline A/B separation (docs/05 §3) | **SPLIT: startup cost CONFIRMED as separate phenomenon; historical 43-min runtime attribution DISPROVED** |
+| H5 | Graph capture changes visibility | P1 (eager) shows runtime JIT; P5 (graphs) zero — mechanism: capture compiles decode keys at startup | — | P1 vs P5 | **CONFIRMED (capture is the covering mechanism, not a hiding mechanism)** |
+| H6 | Cache contamination explains results | — | every run cold-proven (cache-before empty, PREFLIGHT PASS in env.txt); warm run explicitly reused P5 cache | cache-before/after manifests | **DISPROVED** |
+| H7 | Only Qwen3.8 triggers issue | — | G1/G2: small GDN model shows same eager-runtime-JIT families and same normal-mode zero | G-series controls | **DISPROVED (generic to GDN path config, not model-specific)** |
+| H8 | Current main fixed historical #52663/#49349 runtime-JIT problem | P5/P3/P2/G2/G3 zero events; w8a8/decode keys all startup-covered | eager still runtime-JITs (expected-by-design) | P2 error-mode acceptance + P3 repeat | **CONFIRMED (for default config; eager diagnostic mode still compiles at runtime by design)** |
+| H9 | Alignment specialization creates unseen variant | open PR #52611 suggests class of issue | no runtime variant escaped in any armed-monitor run across battery incl. 16/17 boundary and batches | battery boundary lengths | **UNRESOLVED-NEGATIVE at this SHA (not observed; cannot exclude for other shapes)** |
+| H10 | Other explanation (monitor-off artifact; environment) | eager monitor silence could mask events | eager inventory built from cache mtimes + latency instead of monitor; env gate PASS + independent audit | P1 mtime attribution; env gate | **DISPROVED as confounder (inventory method independent of monitor)** |

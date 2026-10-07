@@ -1,0 +1,10 @@
+{
+ "run_id": "G3-warm-reuse",
+ "created": "2026-10-07 04:55:41+0000",
+ "mode": "warm",
+ "jit_monitor_mode": "warn",
+ "model_path": "/workspace/models/Qwen3.5-0.8B",
+ "port": 8138,
+ "warm_reuse_of": "G2-cold-normal-warn",
+ "vllm_commit": "31e2443c90542a33a4a4a293ea7186fba2796c67"
+}

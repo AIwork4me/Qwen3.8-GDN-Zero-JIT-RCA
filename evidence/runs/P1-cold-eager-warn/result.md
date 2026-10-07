@@ -44,7 +44,8 @@ first/second-request compile latency (timeline B), GPU idle during compile
   gpu_worker.py:1056); inventory above is from TRITON_CACHE_DIR artifacts +
   mtime attribution + latency, not from monitor warnings.
 - `layer_norm_fwd_kernel` did NOT runtime-compile: the 3 startup variants
-  (from the V1 profile-run forward) covered the battery (contrast with the
+  (from the V1 profile-run forward) covered the battery (contrast with the historical #49349 ROWS_PER_BLOCK gap, fixed at this SHA by #54251). runtime JIT events: 0 (monitor inactive).
+- Historical
   historical #49349 ROWS_PER_BLOCK gap, fixed at this SHA by #54251).
 - The runtime w8a8 variants indicate m-bucket-dependent specializations
   (config lookup keyed by dynamic M buckets {1,4,16,32,…}) not all covered

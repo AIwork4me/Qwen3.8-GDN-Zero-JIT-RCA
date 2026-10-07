@@ -1,0 +1,20 @@
+{
+ "run_id": "P3-cold-normal-warn",
+ "created": "2026-10-07T04:05:03+0000",
+ "mode": "cold",
+ "jit_monitor_mode": "warn",
+ "jit_monitor_verbose": true,
+ "model_path": "/workspace/models/Qwen3.8-27B-FP8",
+ "port": "8139",
+ "extra_vllm_args": [
+  "--max-model-len",
+  "4096",
+  "--max-num-seqs",
+  "32",
+  "--gpu-memory-utilization",
+  "0.90"
+ ],
+ "rca_commit": "d865957d02cfa5802d3463c897a964f3c426278b",
+ "vllm_commit": "31e2443c90542a33a4a4a293ea7186fba2796c67",
+ "model_config_sha256": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc"
+}
