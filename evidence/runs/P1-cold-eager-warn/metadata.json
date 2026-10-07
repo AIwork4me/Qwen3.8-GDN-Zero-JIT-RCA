@@ -1,0 +1,21 @@
+{
+ "run_id": "P1-cold-eager-warn",
+ "created": "2026-10-07T02:25:40+0000",
+ "mode": "cold",
+ "jit_monitor_mode": "warn",
+ "jit_monitor_verbose": true,
+ "model_path": "/workspace/models/Qwen3.8-27B-FP8",
+ "port": "8139",
+ "extra_vllm_args": [
+  "--enforce-eager",
+  "--max-model-len",
+  "4096",
+  "--max-num-seqs",
+  "32",
+  "--gpu-memory-utilization",
+  "0.90"
+ ],
+ "rca_commit": "97ac59ed8d857c2fbd710a770bf9bdb795a3d984",
+ "vllm_commit": "31e2443c90542a33a4a4a293ea7186fba2796c67",
+ "model_config_sha256": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc"
+}
