@@ -1,0 +1,19 @@
+{
+ "run_id": "N1-cold-warn",
+ "created": "2026-10-07T01:58:10+0000",
+ "mode": "cold",
+ "jit_monitor_mode": "warn",
+ "jit_monitor_verbose": true,
+ "model_path": "/workspace/models/Qwen2.5-0.5B",
+ "port": "8137",
+ "extra_vllm_args": [
+  "--enforce-eager",
+  "--max-model-len",
+  "2048",
+  "--max-num-seqs",
+  "16"
+ ],
+ "rca_commit": "15ff117604e283f8a8d502229cc11fdbb43fad7a",
+ "vllm_commit": "31e2443c90542a33a4a4a293ea7186fba2796c67",
+ "model_config_sha256": "479dcf0c5286339e41ad3992cd08ae88a467c4187587936248e2b7c96283484b"
+}
