@@ -63,8 +63,8 @@ UPSTREAM PR NOT OPENED
 
 Branch:
 AIwork4me/vllm:rocm-gdn-zero-runtime-jit-test
-(fork commit 80fb44931a94409eb3ac10744f1fe21698f452c7,
- tree identical to local commit 7c0ce7b0; base upstream main 68088ed3)
+(fork commit 37363be53af1528426e1e3cb1dc4249ac4b4b564,
+ tree identical to local commit 6ae52736; base upstream main 68088ed3)
 
 Status:
 READY FOR MANUAL REVIEW

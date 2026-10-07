@@ -11,7 +11,7 @@
  "branch": "rocm-gdn-zero-runtime-jit-test",
  "note": "Incremental git fetches of main beyond base_sha repeatedly failed through the egress proxy (pack truncation: 'unresolved deltas', 15+ attempts across 2 sessions). base_sha is the newest upstream commit available locally. tests/jit_monitor/{test_no_runtime_jit.py,test_no_runtime_jit_rocm.py,conftest.py} verified byte-identical (GitHub blob API) between base_sha and main tip at preparation time.",
  "phase1_pinned_sha_for_contrast": "31e2443c90542a33a4a4a293ea7186fba2796c67",
- "local_commit": "7c0ce7b0b286ee81adfbe0977933b7572062230e (local worktree commit; identical tree 66911b28)",
- "fork_commit": "80fb44931a94409eb3ac10744f1fe21698f452c7 (created via git-data API with identical tree 66911b2809a324ad7b832a2a3485d6f92c8c1290 because direct git push uploads are truncated by the egress proxy)",
+ "local_commit": "6ae52736229cb6246645eb9f5980c97538cbd8ae (local worktree commit; identical tree 66911b28; commit message uses natural line breaks per author preference)",
+ "fork_commit": "37363be53af1528426e1e3cb1dc4249ac4b4b564 (created via git-data API with identical tree 66911b2809a324ad7b832a2a3485d6f92c8c1290; superseded 80fb4493 after commit-message reformat; direct git push uploads are truncated by the egress proxy)",
  "fork_url": "https://github.com/AIwork4me/vllm/tree/rocm-gdn-zero-runtime-jit-test"
 }

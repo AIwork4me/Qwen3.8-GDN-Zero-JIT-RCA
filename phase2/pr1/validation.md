@@ -81,8 +81,12 @@ regression on this path.
 
 ## Final push record
 
-- local worktree commit: 7c0ce7b0b286ee81adfbe0977933b7572062230e
-- pushed fork commit: 80fb44931a94409eb3ac10744f1fe21698f452c7
+- local worktree commit: 6ae52736229cb6246645eb9f5980c97538cbd8ae
+- pushed fork commit: 37363be53af1528426e1e3cb1dc4249ac4b4b564
+  (supersedes 80fb4493, same tree; ref history rewritten once on our own
+  branch to reformat the commit message to natural line breaks — the
+  original fixed-width wrapping was replaced at author preference before
+  any PR was opened)
 - both commits carry the identical git tree
   66911b2809a324ad7b832a2a3485d6f92c8c1290 (cryptographic content
   equality); the sha differs only because the fork commit was created
