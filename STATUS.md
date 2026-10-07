@@ -88,3 +88,51 @@ phase2/pr1/audits/final-adversarial.md closure notes)
   READY FOR MAINTAINER REVIEW
 - Hard stop honored: no upstream PR, no upstream issue comments, no
   eager-mode/warmup code changes, no FP8 config JSONs, no kernel changes
+
+---
+
+## Phase 2 PR-1 — Merge-Readiness Closure (2026-10-07)
+
+Evidence lineage: `phase2/pr1/merge-readiness/` (historical evidence untouched).
+
+- Upstream refresh: previous base `68088ed3` → current main `3ca00a82`
+  (retrieved 2026-10-07T10:55Z; 60 commits / 282 files drift; classification
+  LOW-MEDIUM; both patch files blob-identical base↔main)
+- Final duplicate gate: CLEAR (primary + independent subagent; re-verified
+  immediately before PR creation and again during final adversarial review)
+- Fresh branch: `rocm-gdn-zero-runtime-jit-test-main` on AIwork4me/vllm
+  (worktree /workspace/vllm-rocm-gdn-zerojit-final; local commit tree `48f1d43b`;
+  fork head `9e370fac`; historical branch `rocm-gdn-zero-runtime-jit-test`
+  untouched)
+- Final diff: 2 files, tests+CI only (+70/−13); minimality subagent verdict
+  MINIMAL / MAINTAINER-FRIENDLY; no production code changes
+- Current-main validation (gfx1100, ROCm 7.14): baseline dense PASS 131 s;
+  new GDN test PASS 279 s (monitor (True,"error") + GDN layer count asserted
+  in-test); full file 2/2 PASS 394 s; GDN proof: arch Qwen3_5, layer_types
+  [linear_attention, full_attention], 1 GDN layer, six GDN kernel families in
+  startup cache, 0 post-battery cache artifacts; negative control: warmup
+  no-op → RuntimeError _fused_post_conv_kernel → revert → PASS 267 s;
+  ruff check/format clean
+- Test-design audit: APPROVED WITH SMALL CHANGES — all adopted (in-test GDN
+  presence assertion added via the warmup's own `_iter_qwen_gdn_layers`,
+  docstring interval fix, mixed-warmup skip watch-item checked: not present)
+- PR wording audit: PASS after 3 required edits (#45000 rescoped, title scoped
+  to Qwen3.5, variant non-goals added)
+- Upstream PR: **https://github.com/vllm-project/vllm/pull/60395** (DRAFT)
+  - DCO fixed twice (missing sign-off; sign-off email mismatch) → SUCCESS
+  - pre-run-check FAILURE = repository policy gate (author <4 merged PRs; the
+    'verified'/'ready' label must be added by a human; AI agents are
+    explicitly forbidden from requesting it) → pre-commit + Buildkite lanes
+    (incl. AMD MI355 mirror) NOT STARTED
+  - all runnable checks green (DCO, CodeRabbit, readthedocs, Summary, Meta)
+- Final adversarial audit: HIGH-QUALITY MERGE-READY (all 15 attack vectors
+  rejected on evidence; "no remaining author-fixable defect")
+
+Status:
+PHASE 2 PR-1 — CI BLOCKED
+
+Next step:
+HUMAN ACTION REQUIRED — add the 'verified' or 'ready' label to PR #60395
+(or merge-gate account to 4 merged PRs) so upstream CI (incl. the AMD MI355
+mirror lane) starts; then re-assess per phase2/pr1/merge-readiness/
+audits/05-ci-readiness.md and reviewer-plan.md
