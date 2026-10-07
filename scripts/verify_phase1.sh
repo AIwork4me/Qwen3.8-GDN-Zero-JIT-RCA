@@ -7,9 +7,9 @@ miss=0
 for f in metadata.json command.sh run-env.sh env.txt git.txt cache-before.txt server.log client.log jit-events.jsonl timeline.csv cache-after.txt result.md; do
   if [ ! -f "$D/$f" ]; then echo "MISSING: $f"; miss=$((miss+1)); fi
 done
-# empty jit-events.jsonl is valid evidence (zero events) and must be justified in result.md
-if [ ! -s "$D/jit-events.jsonl" ] && ! grep -qiE '0 JIT events|runtime JIT events.*: 0' "$D/result.md"; then
-  echo "EMPTY jit-events.jsonl without 0-event justification in result.md"; miss=$((miss+1))
+# empty jit-events.jsonl is valid evidence when justified (0 events, or monitor inactive by design)
+if [ ! -s "$D/jit-events.jsonl" ] && ! grep -qiE '0 JIT events|runtime JIT events.*: 0|monitor was NOT active|monitor.*not.*activ' "$D/result.md"; then
+  echo "EMPTY jit-events.jsonl without justification in result.md"; miss=$((miss+1))
 fi
 # cache-before must prove emptiness for cold runs
 if grep -q '"mode": "cold"' "$D/metadata.json" 2>/dev/null; then

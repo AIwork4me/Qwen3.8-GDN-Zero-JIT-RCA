@@ -1,0 +1,12 @@
+rca repo:
+048f4a646a709d153ccee5fc883c8c4dc42b254d
+048f4a6 evidence: P1 primary eager inventory - GDN decode + w8a8 runtime compiles on cold gfx1100
+vllm source dir: /workspace/vllm-zero-jit-rca
+31e2443c90542a33a4a4a293ea7186fba2796c67
+ M .claude/skills/ci-fails-buildkite
+ M .claude/skills/debug-ima
+ M .claude/skills/kernel-microbenchmark
+ M .claude/skills/pr-checklist
+ M .claude/skills/triton-kernel-writing
+?? RCA_UPSTREAM_SHA
+worktree-vs-tarball-check: extracted from downloads/vllm-main.tar.gz sha256 recorded in evidence/upstream
