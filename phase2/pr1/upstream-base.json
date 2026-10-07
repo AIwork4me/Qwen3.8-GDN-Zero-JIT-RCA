@@ -1,0 +1,17 @@
+{
+ "repository": "https://github.com/vllm-project/vllm",
+ "base_sha": "68088ed3927e91bce8918db78f2efd9e644a4134",
+ "base_commit_date": "2026-10-06T10:19:54Z",
+ "base_commit_subject": "Fix grammar in `BlockPool.reset_prefix_cache` docstring: \"to invalid\" -> \"to invalidate\" (#59886)",
+ "main_tip_at_preparation": "43b4aaea3e40e20ef53ce2bfecfa1b72060bf2b5",
+ "main_tip_date_at_preparation": "2026-10-07T04:55:34Z",
+ "tree_sha": "d25c611a7dc7fcc3c0af3e87a70f8e45368bd492",
+ "tree_verification": "worktree populated from codeload tarball of base_sha + 5 API-fetched blobs; git write-tree == GitHub-recorded tree sha (bit-perfect snapshot)",
+ "worktree": "/workspace/vllm-rocm-gdn-zerojit-pr1",
+ "branch": "rocm-gdn-zero-runtime-jit-test",
+ "note": "Incremental git fetches of main beyond base_sha repeatedly failed through the egress proxy (pack truncation: 'unresolved deltas', 15+ attempts across 2 sessions). base_sha is the newest upstream commit available locally. tests/jit_monitor/{test_no_runtime_jit.py,test_no_runtime_jit_rocm.py,conftest.py} verified byte-identical (GitHub blob API) between base_sha and main tip at preparation time.",
+ "phase1_pinned_sha_for_contrast": "31e2443c90542a33a4a4a293ea7186fba2796c67",
+ "local_commit": "7c0ce7b0b286ee81adfbe0977933b7572062230e (local worktree commit; identical tree 66911b28)",
+ "fork_commit": "80fb44931a94409eb3ac10744f1fe21698f452c7 (created via git-data API with identical tree 66911b2809a324ad7b832a2a3485d6f92c8c1290 because direct git push uploads are truncated by the egress proxy)",
+ "fork_url": "https://github.com/AIwork4me/vllm/tree/rocm-gdn-zero-runtime-jit-test"
+}

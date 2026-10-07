@@ -1,0 +1,18 @@
+=== baseline: existing ROCm zero-JIT test ===
+date_utc: 2026-10-07T08:16:33Z
+base_sha: 68088ed3927e91bce8918db78f2efd9e644a4134
+gpu: AMD Radeon Pro W7900D
+torch: 2.14.1+rocm7.14 7.14.60850
+vllm: 0.1.dev22532+g68088ed39
+command: python -m pytest -q tests/jit_monitor/test_no_runtime_jit_rocm.py -x
+.                                                                                                                                                                                                                                                               [100%]
+========================================================================================================================== warnings summary ===========================================================================================================================
+../venv-qwen-gdn-rca/lib/python3.12/site-packages/tvm_ffi/_optional_torch_c_dlpack.py:181
+  /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/tvm_ffi/_optional_torch_c_dlpack.py:181: UserWarning: Failed to JIT torch c dlpack extension, EnvTensorAllocator will not be enabled.
+  We recommend installing via `pip install torch-c-dlpack-ext`
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1 passed, 1 warning in 137.30s (0:02:17)
+exit_code: 0
+runtime_s: 160

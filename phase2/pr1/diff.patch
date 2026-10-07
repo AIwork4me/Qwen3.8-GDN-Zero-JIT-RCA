@@ -1,0 +1,122 @@
+diff --git a/.buildkite/test_areas/jit_monitor.yaml b/.buildkite/test_areas/jit_monitor.yaml
+index 9e40c9d1..fda947c1 100644
+--- a/.buildkite/test_areas/jit_monitor.yaml
++++ b/.buildkite/test_areas/jit_monitor.yaml
+@@ -23,11 +23,11 @@ steps:
+   mirror:
+     amd:
+       # Focused MRV2 regression; the broader model/backend matrix is pending.
+-      label: ':amd: (MI355 DPX) MRV2 Sampler JIT Warmup'
++      label: ':amd: (MI355 DPX) MRV2 + Qwen GDN JIT Warmup'
+       dind: false
+       device: mi355_dpx
+       num_devices: 1
+-      timeout_in_minutes: 10
++      timeout_in_minutes: 25
+       working_dir: /vllm-workspace/
+       depends_on:
+       - image-build-amd
+@@ -40,4 +40,4 @@ steps:
+       - vllm/platforms/rocm.py
+       - vllm/envs.py
+       commands:
+-      - pytest -v -s tests/jit_monitor/test_no_runtime_jit_rocm.py --timeout=300
++      - pytest -v -s tests/jit_monitor/test_no_runtime_jit_rocm.py --timeout=600
+diff --git a/tests/jit_monitor/test_no_runtime_jit_rocm.py b/tests/jit_monitor/test_no_runtime_jit_rocm.py
+index a99b8e1e..30d9a695 100644
+--- a/tests/jit_monitor/test_no_runtime_jit_rocm.py
++++ b/tests/jit_monitor/test_no_runtime_jit_rocm.py
+@@ -1,6 +1,10 @@
+ # SPDX-License-Identifier: Apache-2.0
+ # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+-"""Keep the MRV2 sampler warmup registry populated on ROCm."""
++"""Keep the MRV2 JIT warmup coverage populated on ROCm.
++
++Covers both the sampler warmup registry (dense models) and the Qwen GDN
++(Gated DeltaNet) linear-attention path.
++"""
+ 
+ import pytest
+ 
+@@ -23,16 +27,31 @@ def _worker_monitor_state(worker):
+     )
+ 
+ 
++def _gdn_hf_overrides(hf_config, **kwargs):
++    """Truncate to a two-layer hybrid: one GDN + one full-attention layer.
++
++    ``dummy_hf_overrides`` reduces ``num_hidden_layers`` to one, which for
++    Qwen3.5 leaves a linear-attention (GDN) layer but drops every
++    full-attention layer; keeping one of each matches the hybrid layout
++    the model is actually served with.
++    """
++    config = dummy_hf_overrides(hf_config, **kwargs)
++    text_config = hf_config.get_text_config()
++    text_config.num_hidden_layers = 2
++    text_config.layer_types = ["linear_attention", "full_attention"]
++    return config
++
++
+ @create_new_process_for_each_test("spawn")
+-def _run_rocm_shape_battery() -> None:
++def _run_rocm_shape_battery(model: str, hf_overrides) -> None:
+     llm = LLM(
+-        "Qwen/Qwen3-0.6B",
++        model,
+         max_model_len=2048,
+         max_num_seqs=8,
+         gpu_memory_utilization=0.03,
+         kv_cache_memory_bytes=256 * 1024 * 1024,
+         load_format="dummy",
+-        hf_overrides=dummy_hf_overrides,
++        hf_overrides=hf_overrides,
+         enforce_eager=False,
+         jit_monitor_mode="error",
+     )
+@@ -44,11 +63,10 @@ def _run_rocm_shape_battery() -> None:
+         llm.llm_engine.engine_core.shutdown(timeout=30)
+ 
+ 
+-def test_v2_sampler_warmup_rocm(monkeypatch, tmp_path):
+-    """Warmup must cover the existing prefill, decode, and sampler battery.
++def _isolate_rocm_jit_caches(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
++    """Fresh caches and a spawned engine core per test.
+ 
+-    A fresh cache and child process prevent previous model executions from
+-    hiding a missing warmup specialization.
++    A previous run's cache must not hide a missing warmup specialization.
+     """
+     monkeypatch.setenv("VLLM_USE_V2_MODEL_RUNNER", "1")
+     monkeypatch.setenv("VLLM_ROCM_USE_AITER", "0")
+@@ -57,4 +75,30 @@ def test_v2_sampler_warmup_rocm(monkeypatch, tmp_path):
+     monkeypatch.setenv("TRITON_CACHE_DIR", str(tmp_path / "triton"))
+     monkeypatch.setenv("VLLM_CACHE_ROOT", str(tmp_path / "vllm"))
+     monkeypatch.setenv("TORCHINDUCTOR_CACHE_DIR", str(tmp_path / "inductor"))
+-    _run_rocm_shape_battery()
++
++
++def test_v2_sampler_warmup_rocm(monkeypatch, tmp_path):
++    """Warmup must cover the existing prefill, decode, and sampler battery.
++
++    A fresh cache and child process prevent previous model executions from
++    hiding a missing warmup specialization.
++    """
++    _isolate_rocm_jit_caches(monkeypatch, tmp_path)
++    _run_rocm_shape_battery("Qwen/Qwen3-0.6B", dummy_hf_overrides)
++
++
++def test_qwen_gdn_no_runtime_jit_rocm(monkeypatch, tmp_path):
++    """Qwen GDN models must not JIT-compile during inference on ROCm.
++
++    Qwen3.5-0.8B exercises the QwenGatedDeltaNet linear-attention kernels
++    (causal-conv update, gated-delta recurrent decode, FLA chunk prefill)
++    that dense models never touch. Under the default graph configuration,
++    JIT warmup and cudagraph capture must cover every compile key the
++    battery needs; a miss fails the test via jit_monitor_mode="error".
++
++    Runs the in-tree generic Triton GDN path (VLLM_ROCM_USE_AITER=0), so
++    the regression does not depend on optional AITER availability; the
++    AITER GDN path is out of scope for this test.
++    """
++    _isolate_rocm_jit_caches(monkeypatch, tmp_path)
++    _run_rocm_shape_battery("Qwen/Qwen3.5-0.8B", _gdn_hf_overrides)

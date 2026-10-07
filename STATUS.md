@@ -47,3 +47,44 @@ Phase 1: **CLOSED / PASS**.
 
 Phase 2: **AUTHORIZED** (see docs/phase2_candidates.md; PR-1 progress in
 phase2/pr1/).
+
+---
+
+# Phase 2 PR-1 Status (appended 2026-10-07)
+
+```text
+Phase 1:
+CLOSED / PASS
+
+Phase 2 PR-1:
+IMPLEMENTATION COMPLETE
+LOCAL VALIDATION PASS
+UPSTREAM PR NOT OPENED
+
+Branch:
+AIwork4me/vllm:rocm-gdn-zero-runtime-jit-test
+(fork commit 80fb44931a94409eb3ac10744f1fe21698f452c7,
+ tree identical to local commit 7c0ce7b0; base upstream main 68088ed3)
+
+Status:
+READY FOR MANUAL REVIEW
+
+Next step:
+MANUAL REVIEW BEFORE ANY UPSTREAM PR
+(re-run duplicate search immediately before opening; see
+phase2/pr1/audits/final-adversarial.md closure notes)
+```
+
+- New test: `tests/jit_monitor/test_no_runtime_jit_rocm.py::test_qwen_gdn_no_runtime_jit_rocm`
+  (Qwen3.5-0.8B GDN, default graph config, `jit_monitor_mode="error"`,
+  dummy weights, fresh caches, monitor-armed assertion, shared battery)
+- Validation: baseline PASS; new test PASS (263–278 s); full file 2-pass;
+  GDN execution proven (module inspection + GDN kernel families in startup
+  cache + 0 post-battery cache files); negative control FAILS the test via
+  the monitor when GDN warmup is removed, then reverts clean
+- Audits: duplicate-work CLEAR TO IMPLEMENT; test-design APPROVED WITH
+  CHANGES (adopted); implementation PASS WITH NOTES (CI budget adopted);
+  test-evidence PASS WITH NOTES (no false green); final adversarial
+  READY FOR MAINTAINER REVIEW
+- Hard stop honored: no upstream PR, no upstream issue comments, no
+  eager-mode/warmup code changes, no FP8 config JSONs, no kernel changes

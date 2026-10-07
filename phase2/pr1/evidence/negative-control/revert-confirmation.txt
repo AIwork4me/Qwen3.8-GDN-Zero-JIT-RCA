@@ -1,0 +1,17 @@
+# Negative-control revert confirmation
+date_utc: 2026-10-07T10:33:21Z
+
+## worktree git state after revert
+(empty above = only intended files modified; mutation file clean)
+
+## mutation marker search in qwen_triton_warmup.py
+no mutation marker present (GOOD)
+
+## diff of the mutation-bearing file vs base commit
+0
+(0 lines = file identical to upstream base)
+
+## post-revert positive run
+1 passed, 1 warning in 263.10s (0:04:23)
+exit_code: 0
+runtime_s: 285
