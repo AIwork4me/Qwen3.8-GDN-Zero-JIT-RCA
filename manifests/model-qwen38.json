@@ -1,0 +1,325 @@
+{
+ "model": "Qwen/Qwen3.8-27B-FP8",
+ "source": "official HuggingFace repo (downloaded via hf-mirror to /workspace/models/Qwen3.8-27B-FP8 by prior session, scripts in /workspace/downloads/download_model.sh)",
+ "revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+ "local_path": "/workspace/models/Qwen3.8-27B-FP8",
+ "config_json_sha256": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc",
+ "file_count": 78,
+ "total_bytes": 30883264041,
+ "safetensors_count": 66,
+ "crc32_reference_file": "crc32.txt (77 entries, from upstream repo)",
+ "files": [
+  {
+   "file": "LICENSE",
+   "bytes": 11544
+  },
+  {
+   "file": "chat_template.jinja",
+   "bytes": 8952
+  },
+  {
+   "file": "config.json",
+   "bytes": 51350
+  },
+  {
+   "file": "crc32.txt",
+   "bytes": 2426
+  },
+  {
+   "file": "generation_config.json",
+   "bytes": 202
+  },
+  {
+   "file": "layers-0.safetensors",
+   "bytes": 383865448
+  },
+  {
+   "file": "layers-1.safetensors",
+   "bytes": 383865448
+  },
+  {
+   "file": "layers-10.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-11.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-12.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-13.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-14.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-15.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-16.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-17.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-18.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-19.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-2.safetensors",
+   "bytes": 383865448
+  },
+  {
+   "file": "layers-20.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-21.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-22.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-23.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-24.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-25.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-26.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-27.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-28.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-29.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-3.safetensors",
+   "bytes": 372313744
+  },
+  {
+   "file": "layers-30.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-31.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-32.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-33.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-34.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-35.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-36.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-37.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-38.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-39.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-4.safetensors",
+   "bytes": 383865448
+  },
+  {
+   "file": "layers-40.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-41.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-42.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-43.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-44.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-45.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-46.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-47.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-48.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-49.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-5.safetensors",
+   "bytes": 383865448
+  },
+  {
+   "file": "layers-50.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-51.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-52.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-53.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-54.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-55.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-56.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-57.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-58.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-59.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-6.safetensors",
+   "bytes": 383865448
+  },
+  {
+   "file": "layers-60.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-61.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-62.safetensors",
+   "bytes": 383865472
+  },
+  {
+   "file": "layers-63.safetensors",
+   "bytes": 372313760
+  },
+  {
+   "file": "layers-7.safetensors",
+   "bytes": 372313744
+  },
+  {
+   "file": "layers-8.safetensors",
+   "bytes": 383865448
+  },
+  {
+   "file": "layers-9.safetensors",
+   "bytes": 383865448
+  },
+  {
+   "file": "merges.txt",
+   "bytes": 3353259
+  },
+  {
+   "file": "model.safetensors.index.json",
+   "bytes": 137335
+  },
+  {
+   "file": "mtp.safetensors",
+   "bytes": 477202224
+  },
+  {
+   "file": "outside.safetensors",
+   "bytes": 6007102112
+  },
+  {
+   "file": "preprocessor_config.json",
+   "bytes": 390
+  },
+  {
+   "file": "safetensors-md5sum.txt",
+   "bytes": 4022
+  },
+  {
+   "file": "tokenizer.json",
+   "bytes": 12809320
+  },
+  {
+   "file": "tokenizer_config.json",
+   "bytes": 17928
+  },
+  {
+   "file": "video_preprocessor_config.json",
+   "bytes": 385
+  }
+ ]
+}
