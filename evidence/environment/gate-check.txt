@@ -1,0 +1,15 @@
+PASS python inside RCA venv (got /workspace/venv-qwen-gdn-rca/bin/python)
+PASS torch version (got 2.14.1+rocm7.14)
+PASS torch HIP 7.14.x (got 7.14.60850)
+PASS torch.cuda.is_available()
+PASS device 0 gcnArchName gfx1100 (got gfx1100)
+PASS triton 3.8.x (got 3.8.0)
+PASS triton amd backend present (backends=['__init__.py', '__pycache__', 'compiler.py', 'nvidia', 'driver.py', 'amd'])
+PASS no CUDA 'triton' distribution (only triton-rocm)
+PASS triton-rocm 3.8.0 (got 3.8.0)
+PASS no nvidia-* contamination (found [])
+PASS venv devel hipcc present (rocm-sdk-devel 7.14.0)
+PASS cpp_extension ROCM_HOME is devel tree (got /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel)
+
+NOTE vllm not installed yet (pre-build state)
+ENVIRONMENT GATE: PASS
