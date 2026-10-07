@@ -5,15 +5,17 @@
 - flags: (NO enforce-eager) --max-model-len 4096 --max-num-seqs 32
   --gpu-memory-utilization 0.90 --jit-monitor-mode warn --jit-monitor-verbose
 - startup ≈ 8.5 min: torch.compile, JIT kernel warmup (104 compile keys),
-  cudagraph capture to size 512, then "Kernel JIT monitor activated;
-  ... mode=warn"
+  cudagraph capture sizes [1,2,4,8,16,24,32,40,48,56,64] (max 64), then
+  "Kernel JIT monitor activated; ... mode=warn"
 - cold caches proven (empty dirs, PREFLIGHT PASS); battery: tokens
   {1,4,8,15,16,17,31,32,33,64,128} × batches {1,2,4}, max_tokens 16; all OK
 
 ## Result
 
 ```text
-runtime JIT events: 0
+runtime JIT events: 0 (armed monitor)
+disk-level (primary): NO file in ANY cache section (triton/vllm/xdg/torchinductor)
+  has mtime after battery t0 (03:14:40); max triton mtime 03:06:50 < arming 03:07:22
 first-request latency spike: NONE (26.13 s request #1 == steady state 26.1-26.2 s)
 triton cache: 428 entries / 67 named kernels, ALL mtime-attributed STARTUP; RUNTIME entries: 0
 ```
