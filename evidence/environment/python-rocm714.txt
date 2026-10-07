@@ -1,0 +1,47 @@
+== which ==
+/workspace/venv-qwen-gdn-rca/bin/python
+/workspace/venv-qwen-gdn-rca/bin/python3
+/workspace/venv-qwen-gdn-rca/bin/pip
+/workspace/venv-qwen-gdn-rca/bin/pip3
+
+== sys ==
+executable: /workspace/venv-qwen-gdn-rca/bin/python
+prefix: /workspace/venv-qwen-gdn-rca
+path:
+   
+   /opt/amd-oneclick-runtime/python
+   /opt/amd-oneclick-runtime/notebook-python
+   /usr/lib/python312.zip
+   /usr/lib/python3.12
+   /usr/lib/python3.12/lib-dynload
+   /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages
+
+== torch ==
+torch: 2.14.1+rocm7.14
+torch file: /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/torch/__init__.py
+torch.version.hip: 7.14.60850
+torch.version.cuda: None
+cuda available: True
+device count: 1
+device: AMD Radeon Pro W7900D
+gcnArchName: gfx1100
+total_memory: 51522830336
+
+
+============================ ROCm System Management Interface ============================
+============================== Version of System Component ===============================
+Driver version: 6.16.13
+==========================================================================================
+====================================== Product Info ======================================
+GPU[0]		: Card Series: 		AMD Radeon Graphics
+GPU[0]		: Card Model: 		0x744b
+GPU[0]		: Card Vendor: 		Advanced Micro Devices, Inc. [AMD/ATI]
+GPU[0]		: Card SKU: 		D7070910
+GPU[0]		: Subsystem ID: 	0x0e0c
+GPU[0]		: Device Rev: 		0x00
+GPU[0]		: Node ID: 		6
+GPU[0]		: GUID: 		47780
+GPU[0]		: GFX Version: 		gfx1100
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
