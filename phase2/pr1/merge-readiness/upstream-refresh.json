@@ -1,0 +1,26 @@
+{
+  "previous_phase2_base": "68088ed3927e91bce8918db78f2efd9e644a4134",
+  "current_upstream_main": "3ca00a8261c7790ba7487e2001ab9004ad8065f2",
+  "current_upstream_main_subject": "[CI] Skip EmbeddingGemma2 pooling tests needing transformers >= 5.19.0 (#60371)",
+  "current_upstream_main_commit_date": "2026-10-07T10:22:31Z",
+  "retrieved_at_utc": "2026-10-07T10:55:48Z",
+  "repository": "https://github.com/vllm-project/vllm",
+  "drift_commits_ahead": 60,
+  "drift_commits_behind": 0,
+  "drift_files_changed": 282,
+  "retrieval_method": "git fetch --depth=1 upstream main (full and deepened fetches still fail through egress proxy with pack truncation: '384 unresolved deltas' / 'remote did not send all necessary objects'); drift measured via GitHub compare API 68088ed3...3ca00a82",
+  "watched_files_status": {
+    "tests/jit_monitor/test_no_runtime_jit_rocm.py": "UNCHANGED",
+    "tests/jit_monitor/test_no_runtime_jit.py": "UNCHANGED",
+    "tests/models/utils.py": "UNCHANGED",
+    ".buildkite/test_areas/jit_monitor.yaml": "UNCHANGED",
+    "vllm/model_executor/warmup/qwen_triton_warmup.py": "UNCHANGED",
+    "vllm/model_executor/warmup/kernel_warmup.py": "CHANGED - FlashInfer autotune cache persistence only; Qwen Triton warmup untouched",
+    "vllm/platforms/rocm.py": "CHANGED - UltraQuant 4-bit KV attention-backend selection only; no jit/warmup/monitor lines",
+    "vllm/config/vllm.py": "CHANGED - spec-decode unsupported-features list only (ngram_gpu enablement, heterogeneous-vocab block)",
+    "vllm/envs.py": "CHANGED - VLLM_ROCM_AITER_MLA_DCP_VERIFY default segmented->auto (gfx950 MLA DCP; irrelevant with VLLM_ROCM_USE_AITER=0 on GDN path)",
+    "qwen3.5_gdn_model_paths": "UNCHANGED (registry adds EmbeddingGemma2 only; no qwen_moe/qwen3.5/gdn/fla changes)"
+  },
+  "drift_classification": "LOW-MEDIUM",
+  "note": "Directly edited files and the Qwen GDN execution path are unchanged; risk is indirect (MRV2 mamba-hybrid state-copy bugfix #60210 touches hybrid linear-attention machinery, spec-decode context only). Fresh local validation on current main is mandatory and planned."
+}

@@ -1,0 +1,20 @@
+=== ROCm toolchain identity ===
+/workspace/venv-qwen-gdn-rca/bin/hipcc
+InstalledDir: /opt/rocm-7.2.1/lib/llvm/bin
+Configuration file: /opt/rocm-7.2.1/lib/llvm/bin/clang++.cfg
+
+=== python imports ===
+torch 2.14.1+rocm7.14 | hip 7.14.60850
+triton 3.8.0
+
+=== GPU ===
+
+
+============================ ROCm System Management Interface ============================
+====================================== Product Info ======================================
+
+=== base SHA of new worktree ===
+3ca00a8261c7790ba7487e2001ab9004ad8065f2
+
+=== triton_kernels pin ===
+    set(TRITON_KERNELS_TAG "669b31acc1dd1b3fd93286afd5db67f65d9f7557")

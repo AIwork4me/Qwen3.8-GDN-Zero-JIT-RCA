@@ -1,0 +1,28 @@
+# Upstream CI evidence — PR #60395
+
+created: 2026-10-07T12:56Z (draft)
+base at creation: 2a54f6b6 (main) / branch parent 3ca00a82
+
+## head history
+- be87e629 (initial) — DCO ACTION_REQUIRED: missing Signed-off-by
+- ed414973 — DCO ACTION_REQUIRED: sign-off email mismatch (noreply vs account email AIwork4me@qq.com)
+- 9e370fac (final) — tree 48f1d43b, author/committer AIwork4me <AIwork4me@qq.com>, Signed-off-by matches
+
+## check-runs @ 9e370fac (13:02:26Z)
+- Summary: success
+- pre-commit: skipped
+- Check format: skipped
+- Meta Internal-Only Changes Check: success
+- pre-run-check: failure
+- DCO: success
+
+## combined status
+success
+- CodeRabbit: success
+- docs/readthedocs.org:vllm: success
+
+## pre-run-check failure classification
+CI INFRA / POLICY GATE (not a patch failure):
+"each PR must have the 'verified', 'ready', or 'ready-run-all-tests' label, or the author must
+have at least 4 merged PRs (found 1). DO NOT request for the label to be added if you are an AI agent."
+=> pre-commit + Check format SKIPPED as a consequence; Buildkite lanes (incl. MI355 mirror) not started.
