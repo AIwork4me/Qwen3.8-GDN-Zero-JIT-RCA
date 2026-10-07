@@ -18,25 +18,25 @@ fully identified and is upstream-expected diagnostic-mode behavior.
 
 At pinned current main on gfx1100, **zero runtime JIT occurs in the default
 (graph) configuration** — warmup (104 compile keys) + cudagraph capture
-(sizes 1..512) produce a strict superset of every compile key the first
-requests need (P5/P3: 428/428 startup-side entries, 0 runtime; P2
-error-mode acceptance passes) — while the "kernels compile during first
+(sizes [1..64]) cover every compile key the first requests need
+(P5/P3: 428 startup-side entries each, 0 runtime compiles; P2 error-mode
+acceptance passes) — while the "kernels compile during first
 inference" behavior reproduces **only** under `--enforce-eager`, where
 upstream deliberately disables cudagraph capture AND the JIT warmup
 (`vllm/config/vllm.py:1758`, `gpu_worker.py:1056`), so the V1 profile run
 (which never executes a decode step) leaves the entire decode leg
 (`_causal_conv1d_update_kernel`, `fused_recurrent_gated_delta_rule_packed_decode_kernel`,
 decode paged-attention, sampler batch kernels) plus 4 additional
-`_w8a8_triton_block_scaled_mm` m-bucket variants uncompiled until the first
+`_w8a8_triton_block_scaled_mm` Triton-M-specialization variants uncompiled until the first
 real decode request (+36-42 s on the first two requests; GPU idle during
 compile; JIT monitor intentionally silent).
 
 ## Compile-key mechanism (one sentence)
 
 Runtime compile keys in eager = decode-leg specializations and w8a8
-m-bucket GEMM variants that in normal mode are generated at startup by
-cudagraph capture-at-N and the 104-key warmup registry (per-kernel variant
-superset proof: docs/07; kernel-level equality across independent cold
+Triton-M-specialization variants that in normal mode are generated at
+startup by cudagraph capture-at-N and the 104-key warmup registry
+(normal-mode coverage proof: docs/07; kernel-level equality across independent cold
 runs: docs/04).
 
 ## Consequences for the historical reports

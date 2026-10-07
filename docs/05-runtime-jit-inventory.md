@@ -6,13 +6,13 @@ zero everywhere the monitor was armed (normal mode) — see docs/04.
 
 ## 1. RUNTIME compiles observed (eager mode, cold cache, first requests)
 
-### Qwen3.8-27B-FP8 (P1) — 20 kernels, 24 variants, after first request
+### Qwen3.8-27B-FP8 (P1) — 20 kernels, 27 entries, after first request (audit-verified count)
 
 | kernel | variants | family | startup (eager) variants |
 |---|---|---|---|
 | `_causal_conv1d_update_kernel` | 2 | GDN decode conv | 0 |
 | `fused_recurrent_gated_delta_rule_packed_decode_kernel` | 2 | GDN decode SSM | 0 |
-| `_w8a8_triton_block_scaled_mm` | +4 | FP8 W8A8 GEMM (m-bucket variants) | 2 |
+| `_w8a8_triton_block_scaled_mm` | +4 | FP8 W8A8 GEMM (Triton M-specialization variants; default config — no gfx1100 tuned configs exist) | 2 |
 | `fused_sigmoid_gating_delta_rule_update_kernel` | +1 | GDN decode update | 1 |
 | `kernel_paged_attention_2d` | 1 | full-attn decode | 0 |
 | `_apply_write_kernel` | 3 | sampler | 0 |
@@ -32,9 +32,9 @@ autotune family). (*some hit at startup profile; full list in run dir.)
 
 ## 2. STARTUP compiles (normal mode) that cover the runtime keys (P5)
 
-428 cache entries / 67 kernels, ALL mtime-attributed before first request:
-warmup (104 compile keys) + cudagraph capture sizes {1..512} + V1 profile
-run. Coverage proof (P1-runtime ⊆ P5-startup, per-kernel variant counts):
+428 cache entries / 67 named kernels (audit name-normalization: 70; same set),
+ALL mtime-attributed before first request: warmup (104 compile keys) + cudagraph
+capture sizes [1,2,4,8,16,24,32,40,48,56,64] + V1 profile run. Coverage proof (P1-runtime ⊆ P5-startup, per-kernel variant counts):
 
 ```text
 _causal_conv1d_update_kernel                                   2 → 6  YES

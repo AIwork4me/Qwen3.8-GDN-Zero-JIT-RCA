@@ -16,8 +16,8 @@
    => 0 `jit_monitor` warnings here is EXPECTED and NOT evidence of zero JIT.
 
 2. **Runtime compilation happened and is measurable via latency + cache**:
-   first battery request (prompt=1, batch=1) wall = **4.782 s** vs ~0.18-0.2 s
-   for every later request — the first real decode compiled kernels.
+   first battery request (prompt=1, batch=1) wall = **4.782 s**; request #2
+   (prompt=4) still 10.335 s (further compiles), then ~0.18-0.2 s steady — the first real decode compiled kernels.
 
 3. Triton cache inventory — JIT monitor was NOT active during inference (eager); inventory built from cache artifacts. **Triton cache inventory** (`triton-kernels.txt`, 35 distinct kernels)
    includes exactly the historical GDN families:

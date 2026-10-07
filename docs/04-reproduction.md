@@ -12,8 +12,8 @@ battery {1,4,8,15,16,17,31,32,33,64,128} × batches {1,2,4} (27B: max_tokens
 
 | run | config | startup | runtime JIT events | first-req wall |
 |---|---|---|---|---|
-| P1 | cold, eager, warn | 6.5 min | monitor OFF (by design); **24 runtime compiles** (GDN decode + w8a8 + infra) | 62.7 s (then 68.3 s) vs 26.4 s steady |
-| P5 | cold, normal, warn | 8.5 min (warmup 104 keys + cudagraph 1..512) | **0** | 26.13 s (== steady state) |
+| P1 | cold, eager, warn | 6.5 min | monitor OFF (by design); **27 runtime compile entries** (GDN decode + w8a8 + infra) | 62.7 s (then 68.3 s) vs 26.4 s steady |
+| P5 | cold, normal, warn | 8.5 min (warmup 104 keys + cudagraph capture sizes 1..64) | **0** | 26.13 s (== steady state) |
 | P3 | cold, normal, warn (independent repeat) | ~8.5 min | **0**; triton kernel set identical to P5 (67 kernels) | 26.20 s |
 | P2 | cold, normal, **error** | ~8.5 min | **0 raises**, 33/33 requests OK | — (acceptance PASS) |
 | P4 | warm (reuse of P5 cache), normal | **3.0 min** | **0**; 0 triton entries touched after battery t0 | 26.14 s |

@@ -2,7 +2,7 @@
 
 | # | Hypothesis | Evidence for | Evidence against | Experiment | Verdict |
 |---|---|---|---|---|---|
-| H1 | Kernel never participates in startup warmup | true for decode-leg kernels in EAGER (no capture, no warmup) | in NORMAL mode capture+warmup compile all decode keys at startup (P5 428 entries ⊇ runtime needs) | P1 vs P5 mtime attribution + variant counts | **CONFIRMED (eager only)** |
+| H1 | Kernel never participates in startup warmup | true for decode-leg kernels in EAGER (no capture, no warmup) | in NORMAL mode capture+warmup compile all decode keys at startup (P5 428 entries, 0 runtime compiles (coverage)) | P1 vs P5 mtime attribution + variant counts | **CONFIRMED (eager only)** |
 | H2 | Warmup exists but compile key differs | ROWS_PER_BLOCK history (#49349) | P5: 0 runtime events; layer_norm 3 startup variants ≥ runtime 0-extra; P3 identical set | P1-runtime ⊆ P5-startup superset proof | **DISPROVED (at this SHA, this battery)** |
 | H3 | gfx1100 uses AITER, invalidating generic-FLA hypothesis | — | live `GDN_AITER_TRITON_AVAILABLE=False` (aiter not installed, not in rocm requirements); generic FLA path proven by compiled kernel set | platform probe + P1/G1 cache inventory | **DISPROVED (AITER not in natural path)** |
 | H4 | Observed latency is FP8 startup JIT | startup 8.5 min cold vs 3.0 warm (compile cost real) | runtime timeline has NO FP8 compile in normal mode; eager first-request spikes are decode kernels + w8a8, not "43 min" | timeline A/B separation (docs/05 §3) | **SPLIT: startup cost CONFIRMED as separate phenomenon; historical 43-min runtime attribution DISPROVED** |

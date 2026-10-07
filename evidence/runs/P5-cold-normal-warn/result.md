@@ -15,14 +15,14 @@
 ```text
 runtime JIT events: 0
 first-request latency spike: NONE (26.13 s request #1 == steady state 26.1-26.2 s)
-triton cache: 428 entries / 71 kernels, ALL mtime-attributed STARTUP; RUNTIME entries: 0
+triton cache: 428 entries / 67 named kernels, ALL mtime-attributed STARTUP; RUNTIME entries: 0
 ```
 
 Every kernel family that runtime-compiled in eager P1 —
 `_causal_conv1d_update_kernel`, `fused_recurrent_gated_delta_rule_packed_decode_kernel`,
 `_w8a8_triton_block_scaled_mm` (all 6 variants), `kernel_paged_attention_2d`,
 sampler/KV infra — was fully compiled during startup in normal mode
-(cudagraph capture sizes 1..512 + 104-key JIT warmup superset).
+(cudagraph capture sizes [1..64] + 104-key JIT warmup).
 
 ## Reading
 

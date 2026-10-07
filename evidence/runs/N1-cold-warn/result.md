@@ -6,28 +6,36 @@
   --jit-monitor-mode warn --jit-monitor-verbose
 - cold caches proven (cache-before.txt: all empty; PREFLIGHT PASS in env.txt)
 - battery: prompt tokens {1,4,8,15,16,17,31,32,33,64,128} × batches {1,2,4};
-  all requests OK (after client-side fixes recorded below); max_tokens=8, greedy
+  all requests OK; max_tokens=8, greedy
 
 ## Result
 
 ```text
-runtime JIT events (post engine-ready): 0
+runtime JIT events: 0 (as measured — see caveat)
 ```
 
-JIT monitor was active (observability config shows jit_monitor_mode='warn',
-jit_monitor_verbose=True) and the startup JIT warmup ran
-("JIT kernel warmup (108 compile keys)"). No `jit_monitor` warning appears
-anywhere in server.log, including across the 16-token boundary (prompt
-length 17) and batch sizes up to 4.
+**Caveat (corrected after independent audit):** in eager mode the JIT
+monitor is NOT activated by upstream design (server.log line: "Enforce
+eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup";
+gpu_worker.py:1056), so the absence of `jit_monitor` warnings is NOT
+monitor-backed evidence. An earlier draft of this file wrongly cited
+monitor/warmup activation — that text came from the FIRST (aborted,
+non-eager) launch attempt of this run, which was discarded and relaunched
+cold after the launcher arg bug fix; see harness notes below.
 
-Interpretation: on this pinned SHA + host, generic dense-model vLLM serving
-does not runtime-JIT under eager mode. Any runtime JIT observed for GDN
-models in G*/P* runs is therefore not generic-vLLM noise.
+What the evidence does show: request latencies are flat from the first
+battery request (0.094 s first vs 0.08 s median) — no first-request compile
+spike (contrast G1: 4.78 s, P1: 62.7 s), consistent with the dense model
+having no uncompiled kernels on its request path in this configuration.
+Triton cache inventory for this run was not retained in the committed
+evidence (subsumed by the G/P series which inventory the same generic
+infra kernels).
 
 ## Harness fixes discovered during this smoke run (recorded)
 
-1. launch_server.sh initially dropped extra vllm args (enforce_eager=False in
-   first attempt) — fixed; command.sh now embeds args; N1 was relaunched cold.
+1. launch_server.sh initially dropped extra vllm args (the aborted first
+   attempt ran non-eager briefly before being killed and relaunched cold)
+   — fixed; command.sh now embeds args.
 2. /v1/completions rejects `prompt_token_ids`; use OpenAI-style
    `prompt: [ids]` — fixed in run_shape_battery.py.
 3. token ids must stay below each model's vocab (Qwen2.5: 151936) — id

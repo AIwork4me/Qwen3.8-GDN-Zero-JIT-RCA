@@ -57,7 +57,10 @@ case "$MODE" in
     for d in triton torchinductor vllm xdg triton-home hf; do
       [ -d "$ROOT/$d" ] || { echo "warm mode: missing $ROOT/$d (run cold first)" >&2; exit 1; }
     done
-    emit_env_sh
+    # Read-only verification: warm mode MUST NOT rewrite any files inside an
+    # existing run dir (a previous bug clobbered a cold run's cache-before).
+    echo "WARM cache verified at $ROOT (read-only check)"
+    exit 0
     ;;
   *) echo "bad mode: $MODE" >&2; exit 1;;
 esac

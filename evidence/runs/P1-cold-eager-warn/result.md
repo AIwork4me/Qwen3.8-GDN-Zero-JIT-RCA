@@ -22,7 +22,7 @@ recompute_w_u_fwd 9, …), layer_norm_fwd_kernel ×3, causal_conv1d_fwd ×1,
 fused_post_conv ×3, w8a8_triton_block_scaled_mm ×2, batch_memcpy ×1,
 vision/mrope kernels.
 
-RUNTIME (first requests) — 24 entries:
+RUNTIME (first requests) — 27 entries (audit-verified count):
 
 | kernel | variants | note |
 |---|---|---|
@@ -47,8 +47,9 @@ first/second-request compile latency (timeline B), GPU idle during compile
   (from the V1 profile-run forward) covered the battery (contrast with the historical #49349 ROWS_PER_BLOCK gap, fixed at this SHA by #54251). runtime JIT events: 0 (monitor inactive).
 - Historical
   historical #49349 ROWS_PER_BLOCK gap, fixed at this SHA by #54251).
-- The runtime w8a8 variants indicate m-bucket-dependent specializations
-  (config lookup keyed by dynamic M buckets {1,4,16,32,…}) not all covered
-  by the startup profile shape.
+- The runtime w8a8 variants are Triton dynamic-arg specializations on M
+  (startup compiled the M%16-divisible variant; runtime M values produced
+  4 more). gfx1100 has no tuned W8A8 configs in-tree, so the default
+  config is used for all M (m-bucket lookup inert) — corrected in docs/07.
 - Full artifact lists: `triton-kernels.txt`, `cache-after.txt`,
   `requests.jsonl`.
