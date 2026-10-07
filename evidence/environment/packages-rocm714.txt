@@ -1,4 +1,4 @@
-# collected 2026-10-07T01:12:46+00:00
+# collected 2026-10-07T01:20:13+00:00
 accelerate==1.15.0
 agent-detector==2.0.0
 aiohappyeyeballs==2.7.1

@@ -1,0 +1,8 @@
+=== build env ===
+PATH=/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel/bin:/workspace/venv-qwen-gdn-rca/bin:/usr/bin:/bin
+ROCM_PATH=/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel  HIP_PATH=/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel
+/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel/bin/hipcc
+/workspace/venv-qwen-gdn-rca/bin/cmake
+/workspace/venv-qwen-gdn-rca/bin/ninja
+/workspace/venv-qwen-gdn-rca/bin/python
+/workspace/venv-qwen-gdn-rca/bin/pip

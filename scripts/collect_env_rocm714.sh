@@ -69,7 +69,7 @@ PYEOF'
   echo
   echo "== PRE-EXISTING host toolchain (NOT used; contamination reference) =="
   echo "/opt/rocm -> $(readlink -f /opt/rocm)"
-  /opt/rocm/bin/hipcc --version 2>/dev/null | head -2 || true
+  env -i PATH="/opt/rocm/bin:/usr/bin:/bin" HOME=/root /opt/rocm/bin/hipcc --version 2>&1 | head -4 || true
   echo "host ROCM_PATH (login shell default): /opt/rocm  [must be overridden in all build/run shells]"
   echo
   echo "== torch cpp_extension ROCM_HOME resolution under build env =="

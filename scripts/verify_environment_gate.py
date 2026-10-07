@@ -69,9 +69,13 @@ if rocm_compiler_ok and "--build-env" in sys.argv:
     from torch.utils.cpp_extension import ROCM_HOME
 
     check(str(ROCM_HOME) == DEV, f"cpp_extension ROCM_HOME is devel tree (got {ROCM_HOME})")
-    cc = os.environ.get("CC", "")
-    if cc:
-        check("/opt/rocm" not in cc, f"CC not pointing into /opt/rocm (got {cc})")
+    for var in ("PATH", "LD_LIBRARY_PATH", "CMAKE_PREFIX_PATH"):
+        val = os.environ.get(var, "")
+        check("/opt/rocm" not in val, f"{var} free of /opt/rocm (got {val[:120]})")
+        check("/opt/venv" not in val, f"{var} free of /opt/venv")
+    pyenv = os.environ.get("PYTHONPATH", "")
+    check("/opt/venv" not in pyenv and "/opt/amd-oneclick" not in pyenv,
+          f"PYTHONPATH free of old stacks (got {pyenv})")
 
 try:
     import vllm  # noqa: E402
