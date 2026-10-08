@@ -1,0 +1,14 @@
+{
+ "git_sha": "b61df6031ee831a6f535e8940dbddef7cfd2b41e",
+ "branch": "rocm-gdn-zero-runtime-jit-test-main",
+ "upstream_sha": "d6fe5dca686b3f6c5f018d399f4f119fedf842f1",
+ "torch": "2.14.1+rocm7.14",
+ "hip": "7.14.60850",
+ "triton": "3.8.0",
+ "vllm_import": "/workspace/vllm-zero-jit-rca/vllm/__init__.py",
+ "gpu": "AMD Radeon Pro W7900D",
+ "arch": "gfx1100",
+ "rocm_home_env": "/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel",
+ "hipcc": "HIP version: 7.14.60850-0000000",
+ "build_workaround": "TRITON_KERNELS_SRC_DIR=codeload tarball of ROCm/triton@669b31acc1dd1b3fd93286afd5db67f65d9f7557 (exact pinned commit; proxy blocks git clone)"
+}

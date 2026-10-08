@@ -1,0 +1,21 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Obtaining file:///workspace/vllm-zero-jit-rca
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: vllm
+  Building editable for vllm (pyproject.toml): started
+  Building editable for vllm (pyproject.toml): still running...
+  Building editable for vllm (pyproject.toml): still running...
+  Building editable for vllm (pyproject.toml): still running...
+  Building editable for vllm (pyproject.toml): finished with status 'done'
+  Created wheel for vllm: filename=vllm-0.1.dev22626+gb61df6031.rocm714-0.editable-cp312-cp312-linux_x86_64.whl size=12150 sha256=e91d6500832d46a19301a15b8da859b21727760c5f4e1ae6edf5fcc83f77c892
+  Stored in directory: /root/pip-tmp/pip-ephem-wheel-cache-vkx90374/wheels/11/a4/0a/b276873186eae39285aaa1364e93a12115fc4aa515a733df70
+Successfully built vllm
+Installing collected packages: vllm
+Successfully installed vllm-0.1.dev22626+gb61df6031.rocm714
+
+real	10m19.144s
+user	22m52.982s
+sys	0m55.406s

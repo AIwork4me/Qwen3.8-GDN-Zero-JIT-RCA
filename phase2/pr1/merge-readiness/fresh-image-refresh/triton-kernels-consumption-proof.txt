@@ -1,0 +1,7 @@
+=== TRITON_KERNELS_SRC_DIR CONSUMPTION PROOF ===
+date: 2026-10-08T01:14:21+00:00
+pinned source: /workspace/triton-kernels-src/triton-669b31acc1dd1b3fd93286afd5db67f65d9f7557/python/triton_kernels/triton_kernels (codeload tarball, sha256 81849d1a06ae9c6ed272cbf5fbc7857f6be943b229f72440150217d50ed49d7f, commit verified via GitHub API)
+installed by build at: /workspace/vllm-zero-jit-rca/vllm/third_party/triton_kernels
+diff -r result: identical except __pycache__ dirs (compiled bytecode)
+py file counts: pinned=47 installed=47
+conclusion: the successful build consumed TRITON_KERNELS_SRC_DIR pointing at the exact commit pinned by vllm main's cmake/external_projects/triton_kernels.cmake (669b31ac). NETWORK WORKAROUND — SOURCE IDENTITY PRESERVED.

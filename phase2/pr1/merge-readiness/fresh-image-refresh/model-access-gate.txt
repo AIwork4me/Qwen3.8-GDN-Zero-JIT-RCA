@@ -1,0 +1,2 @@
+Qwen/Qwen3-0.6B qwen3 ['Qwen3ForCausalLM']
+Qwen/Qwen3.5-0.8B qwen3_5 ['Qwen3_5ForConditionalGeneration']

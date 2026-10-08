@@ -1,0 +1,11 @@
+=== FINAL DUPLICATE SEARCH 2026-10-08T01:33:30+00:00 ===
+--- open+draft PRs: Qwen3.5 GDN jit monitor ---
+--- open+draft PRs: GDN zero runtime JIT ---
+60395 draft=true [ROCm][Test] Add Qwen3.5 GDN zero-runtime-JIT regression coverage
+--- open+draft PRs: jit_monitor GDN ---
+--- open+draft PRs: QwenGatedDeltaNet zero JIT ---
+--- merged in last 7d: jit_monitor ---
+58685 [Perf] JIT monitor: hook TileLang JITImpl.compile instead of __call__
+--- main tree check ---
+tests/jit_monitor on fdfc171a:
+no GDN coverage in main tests/jit_monitor (only this PR adds it)

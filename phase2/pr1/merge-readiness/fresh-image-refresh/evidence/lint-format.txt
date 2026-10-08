@@ -1,0 +1,15 @@
+=== ruff check ===
+All checks passed!
+rc=0
+=== ruff format --check ===
+1 file already formatted
+rc=0
+=== git diff --check ===
+CLEAN
+=== pytest --collect-only ===
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2 tests collected in 1.43s
+=== YAML parse ===
+YAML PASS

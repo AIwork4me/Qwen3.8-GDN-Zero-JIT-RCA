@@ -1,0 +1,67 @@
+# collected 2026-10-08T00:44:50+00:00
+== BUILD toolchain (venv rocm-sdk-devel, isolated) ==
+DEVROOT=/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel
+HIP version: 7.14.60850-0000000
+AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:440716f8b87be9d8e20ed910e10e5b6d14d57cf6)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel/lib/llvm/bin
+
+== clang ==
+AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:440716f8b87be9d8e20ed910e10e5b6d14d57cf6)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+
+== hipconfig (key fields) ==
+sh: 1: /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel/lib/llvm/bin/llc: not found
+HIP_PATH           :/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel
+ROCM_PATH          :/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel
+HIP_COMPILER       :clang
+CPP_CONFIG         : -D__HIP_PLATFORM_HCC__= -D__HIP_PLATFORM_AMD__= -I/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel/include -I/include
+HIP_PATH=/workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel
+
+== cmake configs in devel tree ==
+AMDDeviceLibs
+amd-dbgapi
+amd_comgr
+amd_smi
+clang
+flatbuffers
+hip
+hip-lang
+hipblas
+hipblas-common
+hipblaslt
+hipcub
+hipdnn_backend
+hipdnn_data_sdk
+hipdnn_flatbuffers_sdk
+hipdnn_frontend
+hipdnn_plugin_sdk
+hipdnn_test_sdk
+hipfft
+hipfile
+hiprand
+hiprtc
+hipsolver
+hipsparse
+hipsparselt
+hsa-runtime64
+hsakmt
+lld
+llvm
+miopen
+
+== PRE-EXISTING host toolchain (NOT used; contamination reference) ==
+/opt/rocm -> /opt/rocm-7.2.1
+HIP version: 7.2.53211-e1a6bc5663
+AMD clang version 22.0.0git (https://github.com/RadeonOpenCompute/llvm-project roc-7.2.1 26084 f58b06dce1f9c15707c5f808fd002e18c2accf7e)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+host ROCM_PATH (login shell default): /opt/rocm  [must be overridden in all build/run shells]
+
+== torch cpp_extension ROCM_HOME resolution under build env ==
+ROCM_HOME: /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages/_rocm_sdk_devel
+
+== gfx1100 smoke: hipcc compile + run ==
+(evidence: /tmp/opencode/hipver.cu compiled with devel hipcc --offload-arch=gfx1100; binary ran on GPU: 'hip 7.14 dev ok=0')

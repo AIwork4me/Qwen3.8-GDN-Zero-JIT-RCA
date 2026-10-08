@@ -1,0 +1,115 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Requirement already satisfied: pip in /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/f3/6e/1736e5b4ae2b778ef2f81c47d797de9f891d4d8acb047a24ca37a60294dd/pip-26.2.1-py3-none-any.whl (1.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 13.3 MB/s eta 0:00:00
+Collecting wheel
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/2e/29/69cfbb602cd91690c55d38ba9fe53e6a7e76a6fa647bf38f19c138d25449/wheel-0.48.0-py3-none-any.whl (33 kB)
+Collecting setuptools
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/95/9c/c510029fc6ef33a6275cd2c5d3cecd6613dfd6aa401d57c54f1c18852ccf/setuptools-84.0.0-py3-none-any.whl (818 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 818.2/818.2 kB 75.6 MB/s eta 0:00:00
+Collecting packaging>=24.0 (from wheel)
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl (129 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.0/130.0 kB 68.9 MB/s eta 0:00:00
+Installing collected packages: setuptools, pip, packaging, wheel
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed packaging-26.3 pip-26.2.1 setuptools-84.0.0 wheel-0.48.0
+Looking in indexes: https://download.pytorch.org/whl/rocm7.14
+Collecting torch
+  Downloading torch-2.14.1%2Brocm7.14-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (37 kB)
+Collecting torchvision
+  Downloading torchvision-0.29.1%2Brocm7.14-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (5.7 kB)
+Collecting filelock (from torch)
+  Downloading filelock-3.32.3-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: setuptools>=77.0.3 in /workspace/venv-qwen-gdn-rca/lib/python3.12/site-packages (from torch) (84.0.0)
+Collecting sympy>=1.13.3 (from torch)
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx>=2.5.1 (from torch)
+  Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch)
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec>=0.8.5 (from torch)
+  Downloading fsspec-2026.7.0-py3-none-any.whl.metadata (10 kB)
+Collecting rocm==7.14.* (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm-7.14.1.tar.gz (24 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting triton-rocm~=3.8.0 (from torch)
+  Downloading triton_rocm-3.8.0-cp312-cp312-linux_x86_64.whl.metadata (983 bytes)
+Collecting rocm-sdk-core==7.14.1 (from rocm==7.14.*->rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_core-7.14.1-py3-none-linux_x86_64.whl (414.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 414.6/414.6 MB 20.0 MB/s  0:00:14
+Collecting rocm-sdk-libraries==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_libraries-7.14.1-py3-none-linux_x86_64.whl (143.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.0/143.0 MB 97.4 MB/s  0:00:01
+Collecting rocm-sdk-device-gfx1010==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1010-7.14.1-py3-none-linux_x86_64.whl (63.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 MB 90.4 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1011==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1011-7.14.1-py3-none-linux_x86_64.whl (63.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.2/63.2 MB 89.7 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1012==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1012-7.14.1-py3-none-linux_x86_64.whl (63.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.2/63.2 MB 102.9 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1030==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1030-7.14.1-py3-none-linux_x86_64.whl (480.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 480.7/480.7 MB 93.4 MB/s  0:00:04
+Collecting rocm-sdk-device-gfx1031==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1031-7.14.1-py3-none-linux_x86_64.whl (68.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.1/68.1 MB 93.0 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1032==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1032-7.14.1-py3-none-linux_x86_64.whl (68.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.1/68.1 MB 93.8 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1033==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1033-7.14.1-py3-none-linux_x86_64.whl (68.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.1/68.1 MB 103.1 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1034==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1034-7.14.1-py3-none-linux_x86_64.whl (68.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.1/68.1 MB 67.2 MB/s  0:00:01
+Collecting rocm-sdk-device-gfx1035==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1035-7.14.1-py3-none-linux_x86_64.whl (68.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.1/68.1 MB 69.2 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1036==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1036-7.14.1-py3-none-linux_x86_64.whl (68.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.1/68.1 MB 90.9 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1100==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1100-7.14.1-py3-none-linux_x86_64.whl (214.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 214.9/214.9 MB 102.4 MB/s  0:00:02
+Collecting rocm-sdk-device-gfx1101==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1101-7.14.1-py3-none-linux_x86_64.whl (211.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 211.8/211.8 MB 102.9 MB/s  0:00:02
+Collecting rocm-sdk-device-gfx1102==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1102-7.14.1-py3-none-linux_x86_64.whl (209.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 209.7/209.7 MB 90.2 MB/s  0:00:02
+Collecting rocm-sdk-device-gfx1103==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1103-7.14.1-py3-none-linux_x86_64.whl (55.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 55.1/55.1 MB 93.6 MB/s  0:00:00
+Collecting rocm-sdk-device-gfx1150==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1150-7.14.1-py3-none-linux_x86_64.whl (148.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 148.3/148.3 MB 16.1 MB/s  0:00:09
+Collecting rocm-sdk-device-gfx1151==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1151-7.14.1-py3-none-linux_x86_64.whl (172.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 172.7/172.7 MB 96.8 MB/s  0:00:01
+Collecting rocm-sdk-device-gfx1152==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1152-7.14.1-py3-none-linux_x86_64.whl (148.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 148.2/148.2 MB 94.0 MB/s  0:00:01
+Collecting rocm-sdk-device-gfx1153==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1153-7.14.1-py3-none-linux_x86_64.whl (148.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 148.3/148.3 MB 97.8 MB/s  0:00:01
+Collecting rocm-sdk-device-gfx1200==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1200-7.14.1-py3-none-linux_x86_64.whl (402.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 402.4/402.4 MB 92.9 MB/s  0:00:04
+Collecting rocm-sdk-device-gfx1201==7.14.1 (from rocm[device-all,libraries]==7.14.*->torch)
+  Downloading rocm_sdk_device_gfx1201-7.14.1-py3-none-linux_x86_64.whl (337.9 MB)
+ERROR: Could not install packages due to an OSError: [Errno 28] No space left on device
+
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   321.9/337.9 MB 108.6 MB/s eta 0:00:01

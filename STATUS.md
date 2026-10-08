@@ -136,3 +136,82 @@ HUMAN ACTION REQUIRED — add the 'verified' or 'ready' label to PR #60395
 (or merge-gate account to 4 merged PRs) so upstream CI (incl. the AMD MI355
 mirror lane) starts; then re-assess per phase2/pr1/merge-readiness/
 audits/05-ci-readiness.md and reviewer-plan.md
+
+---
+
+## 2026-10-08 — Fresh-image bootstrap + latest-main refresh + Ready for Review
+
+Environment deleted with the previous Linux image; rebuilt from zero and the
+PR refreshed onto execution-time current main. Full evidence lineage under
+`phase2/pr1/merge-readiness/fresh-image-refresh/`.
+
+- Fresh image: Ubuntu 24.04.4, EPYC 9334, AMD Radeon Pro W7900D (gfx1100,
+  Chip ID 0x744b), 503 GiB RAM; host /opt/rocm-7.2.1 present and explicitly
+  NOT used for the build (compiler identity = venv `_rocm_sdk_devel`,
+  hipcc HIP 7.14.60850 driving clang 23 ROCm/llvm-project)
+- Environment: venv `/workspace/venv-qwen-gdn-rca`; torch 2.14.1+rocm7.14
+  (hip 7.14.60850) + rocm 7.14.0.post1 SDK family (core/libraries/devel/
+  device-gfx1100 all 7.14.0) from the official PyTorch rocm7.14 index +
+  AMD repo.amd.com wheel index for rocm-sdk-devel; triton-rocm 3.8.0; no
+  nvidia-*/cuda-* contamination. Documented deviations on the fresh image:
+  (1) rocm metapackage pinned to [devel,libraries,device-gfx1100]==7.14.0.post1
+  before torch to avoid the 7.14.1 device-all (~25 GB) resolution that
+  exhausted the 4 GB /tmp tmpfs; (2) torch installed --no-deps; (3) amdsmi
+  7.0.2 installed per requirements/build/rocm.txt (ROCm platform detection);
+  (4) venv-level zz_triton_knobs_first.pth preload works around an
+  RTLD_GLOBAL libtorch_cpu / libtriton segfault (root cause + proof in
+  segfault-root-cause.md)
+- Network: github.com git transport intermittently blocked (CONNECT 503);
+  bounded retries succeeded for clone/fetch/push. CMake FetchContent
+  triton_kernels clone blocked → NETWORK WORKAROUND — SOURCE IDENTITY
+  PRESERVED: codeload tarball of the exact pinned commit 669b31ac via
+  TRITON_KERNELS_SRC_DIR; installed tree byte-identical to pinned source
+  (triton-kernels-consumption-proof.txt)
+- Upstream main discovered at execution time: cycle 1 d6fe5dca (33 commits
+  past the previously validated 3ca00a82; drift LOW); during validation the
+  tip advanced 9 more commits (only a58bdd0d touches a watched file —
+  jit_monitor TileLang-hook internals, Triton path untouched) → cycle 2
+  rebase onto fdfc171a; drift analysis refreshed, classification LOW
+- New PR head: `90b1a661407a43b2d500c1cdae2188c8d83abf64` (single commit on
+  fdfc171a; author + Signed-off-by AIwork4me <AIwork4me@qq.com> preserved;
+  DCO SUCCESS on GitHub after push). Duplicate search (pre-refresh and
+  final): CLEAR
+- Build: vllm 0.1.dev22635+g90b1a6614.rocm714 editable from
+  /workspace/vllm-zero-jit-rca; environment gate PASS pre- and post-build
+- Fresh validation on 90b1a661 (= fdfc171a + test): full ROCm jit-monitor
+  file 2/2 PASS 425 s (per-test ~143 s dense / ~268 s GDN on the same-day
+  cycle-1 head); GDN proof in-log: jit_monitor_mode='error', Using
+  Triton/FLA GDN prefill kernel (requested=auto), Warming up Qwen GDN
+  Triton kernels; negative control NOT RE-RUN (warmup/monitor mechanism
+  unchanged; historical sensitivity proof applicable — see
+  negative-control-decision.md); ruff check/format, git diff --check, YAML
+  parse, pytest --collect-only all PASS
+- Subagent audits: environment — all toolchain/runtime checks PASS after
+  adding the triton_kernels consumption proof (initial FAIL was an
+  evidence-completeness gap only); freshness — PASS (tip movement inspected,
+  validation sufficient); diff — MINIMAL / MAINTAINER-FRIENDLY (notes: CI
+  mirror source_file_dependencies omits warmup dir — pre-existing, recorded;
+  no blocking findings)
+- Upstream PR #60395 updated: remote head verified 90b1a661; 1 commit;
+  MERGEABLE; files exactly the 2 intended; PR body refreshed to fdfc171a
+  validation; marked READY FOR REVIEW
+- Reviewers: intended single request AndreasKaratzas could not be submitted
+  (fork author lacks requestReviewsByLogin permission on upstream). On the
+  ready transition GitHub auto-requested the CODEOWNERS set {tjtanaa,
+  AndreasKaratzas, Harry-Chen, khluu} (/.buildkite @Harry-Chen @khluu rule
+  among them); removal also requires unavailable permissions. Preferred
+  reviewer AndreasKaratzas is included; no promotional comments posted
+- CI authorization: NOT available — pre-run-check FAILURE is the repository
+  policy gate (author has 1 merged PR < 4; 'verified'/'ready' label must
+  come from a human; AI agents must not request it). DCO, CodeRabbit,
+  readthedocs, Summary, Meta all SUCCESS; pre-commit + Buildkite lanes
+  (incl. AMD MI355 mirror) not started
+
+Status:
+PHASE 2 PR-1 — WAITING FOR MAINTAINER CI AUTHORIZATION
+
+Next step:
+maintainer adds 'verified' or 'ready'/'ready-run-all-tests' label (or
+approves) so upstream CI including the AMD MI355 mirror lane starts; then
+re-assess per phase2/pr1/merge-readiness/audits/05-ci-readiness.md (first
+command preference: /amd-ci run; failure policy in the mission contract)

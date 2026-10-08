@@ -1,0 +1,21 @@
+{
+ "upstream": "vllm-project/vllm",
+ "latest_main_sha": "d6fe5dca686b3f6c5f018d399f4f119fedf842f1",
+ "latest_main_subject": "[Bugfix][Parser] Emit buffered post-reasoning text when no tool parser is configured (#58911)",
+ "latest_main_commit_date": "2026-10-07T23:21:51Z",
+ "retrieved_at": "2026-10-07T23:26:49Z",
+ "pr": 60395,
+ "retrieval_method": "git fetch upstream main (clone/fetch succeeded through egress proxy on this image; local upstream/main verified identical to GitHub branches/main API SHA at retrieval time)",
+ "previous_pr_head": "9e370fac11bd6fe3a5a92d762318b674e80af827",
+ "previous_validated_base": "3ca00a8261c7790ba7487e2001ab9004ad8065f2",
+ "prompt_informational_sha": "4ac5a36a8e38b79c8084589b0bc4f2a249bf7c2a (superseded by d6fe5dca at execution time; 4ac5a36a is within the 33-commit drift range)",
+ "refresh_cycle_2": {
+  "reason": "upstream tip moved 9 commits during cycle-1 validation; one commit (a58bdd0d4e, #58685) touches vllm/utils/jit_monitor.py (TileLang hook internals only; Triton path untouched)",
+  "latest_main_sha_final": "fdfc171a7495bed2997609a0758d7e69c69440c0",
+  "latest_main_subject_final": "[Bugfix][ToolParser] Stream every tool call when one delta completes several (#60354)",
+  "retrieved_at": "2026-10-08T01:33:15Z",
+  "cycle1_base_superseded": "d6fe5dca686b3f6c5f018d399f4f119fedf842f1",
+  "new_pr_head": "90b1a661407a43b2d500c1cdae2188c8d83abf64",
+  "final_validation": "full file 2 passed in 425.19s on v0.1.dev22635+g90b1a6614 (engine version confirms tree)"
+ }
+}
